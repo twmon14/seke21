@@ -127,22 +127,22 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+% \usepackage[pdftex]{graphicx}
+% declare the path(s) where your graphic files are
+% \graphicspath{{../pdf/}{../jpeg/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+% \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
+% or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+% will default to the driver specified in the system graphics.cfg if no
+% driver is specified.
+% \usepackage[dvips]{graphicx}
+% declare the path(s) where your graphic files are
+% \graphicspath{{../eps/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+% \DeclareGraphicsExtensions{.eps}
 \fi
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
@@ -366,1001 +366,994 @@
 \usepackage{microtype}
 \def\IEEEbibitemsep{2pt plus .5pt}
 \begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
-\title{Formal verification of IFF \& NSLPK authentication protocols with CiMPG}
-
-% author names and affiliations
-% use a multiple column layout for up to two different
-% affiliations
-
-\author{\IEEEauthorblockN{Thet Wai Mon, Shuho Fujii, Duong Dinh Tran, and Kazuhiro Ogata}
-\IEEEauthorblockA{School of Information Science, 
-Japan Advanced Institute of Science and Technology (JAIST)\\
-1-1 Asahidai, Nomi, Ishikawa 923-1292, Japan\\
-Email: \{thetwaimon,s1910186,duongtd,ogata\}@jaist.ac.jp}
-}
-
-%\author{\IEEEauthorblockN{Authors Name/s per 1st Affiliation (Author)}
-%\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
-%line 2: name of organization, acronyms acceptable\\
-%line 3: City, Country\\
-%line 4: Email: name@xyz.com}
-%\and
-%\IEEEauthorblockN{Authors Name/s per 2nd Affiliation (Author)}
-%\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
-%line 2: name of organization, acronyms acceptable\\
-%line 3: City, Country\\
-%line 4: Email: name@xyz.com}
-%}
-
-% conference papers do not typically use \thanks and this command
-% is locked out in conference mode. If really needed, such as for
-% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-% after \documentclass
-
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-% 
-%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-%Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3}, 
-%Montgomery Scott\IEEEauthorrefmark{3} and
-%Eldon Tyrell\IEEEauthorrefmark{4}}
-%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-%Georgia Institute of Technology,
-%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
-
-
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-
-
-
-% make the title area
-\maketitle
-
-
-%\begin{abstract}
-%The proof score approach has been intensively used to formally verify that the specifications satisfy some desired properties.
-%CafeOBJ, an algebraic specification language, is used to formally specify the system, and then, the formal verification is conducted by writing proof scores and running them with CafeOBJ.
-%This paper presents the formal verification with a proof assistant CiMPA for CafeOBJ and with a proof generator CiMPG for CafeOBJ.
-%Two authentication protocols are presented to illustrate the formal verification: IFF protocol and NSLPK protocol.
-%%In comparison with the proof score approach, each verification method has advantage as well as disadvantage.
-%Although writing proof scores is flexible to conduct formal verification, the verification may contain some flaws because proof scores are subject to human errors.
-%%, for example, users can overlook some cases during the proof.
-%%While conducting formal verification with CiMPA and CiMPG can guarantee the reliability even though it is quite strict and not easy for non-expert users to tackle.
-%Using CiMPA to develop formal verification by writing proof scripts can help us to avoid the flaw made by human users
-%even though its syntax is quite strict.
-%%However, it is often the case that CiMPA is not flexible enough to conduct formal verification.
-%CiMPG allows users to combine the flexibility of the proof score approach and the reliability of CiMPA such that it can generate proof scripts from the existing proof scores.
-%
-%%While proof scores are flexible to write, they are subject to human errors since users can overlook some cases during the verification.
-%%The proof scripts are reliable, but they are not easy to develop, especially with non-expert users.
-%%CiMPG combines the flexibility of proof scores approach and reliability of CiMPA.
-%%However, it often takes time for CiMPG to generate proof scripts from the existing proof scores.
-%
-%\end{abstract}
-
-\begin{abstract}
-Proof scores are programs written in an algebraic specification language, such as CafeOBJ, to conduct formal verification. Thus, the proof score approach to formal verification (PSA2FV) can be regarded as a kind of proving by programming and then flexible. PSA2FV, however, is subject to human errors. To address the issue, a proof assistant called CiMPA was developed for CafeInMaude, the world’s second implementation of CafeOBJ. Furthermore, a proof generator called CiMPG was developed to benefit from the strong points of both PSA2FV and CiMPA. Although some case studies have been conducted with CiMPG, it is necessary to do some more. The present paper reports on case studies in which it is formally verified that two authentication protocols enjoy desired properties with CiMPG.
-\end{abstract}
-
-\begin{IEEEkeywords}
-algebraic specification language; proof assistant; proof generator; authentication protocol
-
-% anti-fairness; fairness; linear temporal logic; liveness property;
-% model checking;
-\end{IEEEkeywords}
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
-\section{Introduction}
-Theorem proving that systems enjoy some desired properties by writing proof scores have been intensively used.
-This approach uses observational transition systems (OTSs) \cite{OgataF03fmoods} as state machines to formalize systems. 
-Then, the OTSs are specified in CafeOBJ \cite{DiaconescuF98amast}, which is a formal specification language. 
-Formal verification is conducted by writing what is called ``proof scores'' \cite{OgataF03fmoods} in CafeOBJ and executing them with CafeOBJ. 
-%Proof scores are developed by simultaneous structural induction on a state variable of the OTS. 
-Although writing proof scores is flexible to conduct formal verification, the proof may contain some flaws since proof scores are subject to human errors (e.g., users may overlook some cases during the proof).
-
- 
-CafeInMaude is the second implementation in Maude of CafeOBJ in addition to the original implementation in Common Lisp, where Maude~\cite{ClavelEtal2007maude} is a sibling language of CafeOBJ.
-%because both of them are the direct successors of OBJ3, a well-known algebraic specification language.
-CafeInMaude introduces CafeOBJ specifications into the Maude system. 
-It comes with two extension tools  CafeInMaude Proof Assistant (CiMPA) and CafeInMaude Proof Generator (CiMPG)~\cite{RiescoO18tosem}. 
-CiMPA is a proof assistant that allows users to write proof scripts in order to prove invariant properties on their CafeOBJ specifications. CiMPG provides a minimal set of annotations for identifying proof scores and generating CiMPA scripts for these proof scores. 
-Using CiMPA to develop the formal verification by writing proof scripts can help us to avoid the flaw made by human users as in the proof score approach. 
-However, it is often the case that CiMPA is not flexible enough to conduct formal verification.
-CiMPG allows users to combine the flexibility of the proof score approach and the reliability of CiMPA. Given proof scores that should be slightly annotated, CiMPG generates proof scripts for CiMPA. Feeding the generated proof scripts into CiMPA, if CiMPA successfully discharges all goals, the proof scores are correct for the goals. 
-%By conducting formal verification in three ways, we triple-check the correctness of our proofs.
-
-%We have intensively used proof scores to theorem prove that equational theory specifications of observational transition systems (OTSs) have properties.
-This paper presents the formal verification with CiMPA and CiMPG of two authentication protocols: Identity-Friend-or-Foe authentication protocol (IFF)~\cite{iff2001} and Needham-Schroeder-Lowe Public Key authentication protocol (NSLPK)~\cite{nslpk95}.
-The former is a simple protocol used to check if a principal (or an agent) is a member of a group.
-%We formally verify that IFF enjoys the {\underline{ABC}} property
-The latter is an advanced authentication protocol, which is a modification of NSPK protocol \cite{nspk78} made by Lowe.
-We use CiMPA and CiMPG to formally verify that: (1) IFF enjoys the identifiable property, and (2) NSLPK enjoys the nonce secrecy property and one-to-many correspondence property.
-
-%The remains of the paper are organized as follows: Sect.\,\ref{sect_iff} describes IFF protocol, how to specify IFF in CafeOBJ, its formal verification with CiMPA as well as CiMPG. 
-%Sect.\,\ref{sect_nslpk} describes NSLPK protocol, its formal specification in CafeOBJ, the formal verification with CiMPA and CiMPG. 
-%how to formally verify that
-%Anderson protocol enjoys the mutual exclusion property by showing that
-%A-Anderson protocol simulates Anderson protocol. 
-%Some related work is mentioned in Sect.\,\ref{sect_rw}. 
-%Finally, Sect.\,\ref{sect_concl} concludes the paper.
-
-Although it has been formally verified that NSLPK enjoys the nonce secrecy property with CiMPG~\cite{RiescoO18tosem}, we are the first to formally verify that NSLPK enjoys the one-to-many correspondence property with CiMPG as well as CiMPA. IFF is a tiny protocol but nobody has formally verified that it enjoys a desired property with either CiMPA or CiMPG. 
-
-\section{Formal verification of IFF}
-\label{sect_iff}
-IFF \cite{iff2001} is used to check if a principal is a member of a group. The IFF protocol can be described as the following two message exchanges:
-
-${\rm Check} \ \ \: p \rightarrow q : r$
-
-${\rm Reply}  \ \ \ q \rightarrow p : \varepsilon_k(r,q)$
-
-\noindent
-Each principal (or agent) such as $p$ and $q$ belongs to only one group.
-A symmetric key is given to each group, whose members share the key, and keys are different from group to group. If a principal $p$ wants to check if a principal $q$ is a member of the $p$'s group, $p$ generates a fresh random number $r$ and sends it to $q$ as a $\rm Check$ message. 
-On receipt of the message, $q$ sends back to $p$ a $\rm Reply$ message that consists of $r$ and ID $q$ encrypted by the symmetric key $k$ of the $q$'s group. 
-When $p$ receives the $\rm Reply$ message, $p$ tries to decrypt the ciphertext received with the symmetric key of the $p$'s group. 
-If the decryption succeeds and the plaintext consists of $r$ and $q$, $p$ then concludes that $q$ is a member of the $p$'s group. 
-%The protocol is supposed to have the property that if $p$ receives a valid $\rm Reply$ message from $q$, $q$ is always a member of the $p$'s group. The property is called the IFF property in this paper.
-
-We suppose that the cryptosystem used is perfect, there is only one legitimate group, all members of the group are trustable, and there are also untrustable principals who are not members. Trustable principals exactly follow the protocol, but untrustable ones may do something against the protocol as well. The combination and cooperation of untrustable principals is modeled as the most general enemy (or intruder). The enemy gleans as much information as possible from messages flowing in the network and creates fake messages based on the gleaned information, provided that the enemy cannot break the perfect cryptosystem.
-
-
-\subsection{Formal Specification of the Protocol}
-We first declare the operator \verb!enc! to specify the ciphertexts used in the protocol as follows:
-
-\smallskip
-\begin{small}
-\noindent
-\verb!op enc : Key Rand Prin -> Cipher .!\\
-\verb!op k : Cipher -> Key . op r : Cipher -> Rand! .\\
-\verb!op p : Cipher -> Prin .!
-\end{small}
-\smallskip
-
-\noindent
-where \verb!Key! is the sort (or type) representing symmetric keys,
-% given an agent p, k(p) denotes the key of the p’s group; operator p returns the argument of k(p),
-\verb!Rand! is the sort denoting random numbers, 
-\verb!Prin! is the sort representing principals, and
-\verb!Cipher! is the sort denoting ciphertexts.
-Given a key $k$, a random number $r$ and a principal $p$, 
-\verb!enc!$(k,r,p)$ denotes the ciphertext obtained by encrypting $r$ and $p$ with $k$.
-Operators \verb!k!, \verb!r! and \verb!p! return the first, second and third arguments of \verb!enc!$(k, r, p)$, respectively.
-
-
-We specifiy two messages $\rm Check$ and $\rm Reply$ by two operators \verb!cm! and \verb!rm! as follows:
-\begin{small}
-	\begin{verbatim}
-op cm : Prin Prin Prin Rand   -> Msg
-op rm : Prin Prin Prin Cipher -> Msg
-	\end{verbatim}
-\end{small}
-
-%constant enemy denotes the enemy,
-\noindent
-where \verb!Msg! is the sort denoting messages.
-The first, second and third arguments of each of \verb!cm! and \verb!rm! are the actual creator, the seeming sender and the receiver of the corresponding message. The first argument is meta-information that is only available to the outside observer and the principal that has sent the corresponding message, and that cannot be forged by the enemy; while the remaining arguments may be forged by the enemy. 
-
-The network is modeled as a multiset of messages, in which the enemy can use as his/her storage. Any message that has been sent or put once into the network is supposed to be never deleted from the network because the enemy can replay the message repeatedly, although the enemy cannot forge the first argument. Consequently, the empty network (i.e., the empty multiset) means that no messages have been sent.
-
-The enemy tries to glean two kinds of values from the network, which are random numbers and ciphertexts. The collections of these values gleaned by the enemy are denoted by operators \verb!rands! and \verb!ciphers!, which are declared as follows:
-
-\begin{small}
-	\begin{verbatim}
-op rands   : Network -> ColRands
-op ciphers : Network -> ColCiphers
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!Network! is the sort denoting networks, \verb!ColRands! is the sort denoting collections of random numbers, and \verb!ColCiphers! is the sort denoting collections of ciphertexts. 
-\verb!ciphers! is defined by the following equations:
-
-\begin{small}
-	\begin{verbatim}
-eq C \in ciphers(void) = false .
-ceq C \in ciphers(M , NW) = true if rm?(M)
-  and C = c(M) .
-ceq C \in ciphers(M , NW) = C \in ciphers(NW) 
-  if not(rm?(M) and C = c(M)) .
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!void! denotes the empty multiset (or empty network),
-operator \verb!rm?! checks if a given message is a $\rm Reply$ message,
-operator \verb!c! takes a $\rm Reply$ message as a parameter and returns its ciphertext (i.e., the fourth argument of \verb!rm! operator),
-\verb!\in! is an infix operator checking the existence of an element in a collection,
-and operator \verb!,! in \verb!M , NW! denotes the data constructor of nonempty multisets. 
-The equations say that a ciphertext \verb!C! is available to the enemy iff there exists a $\rm Reply$ message whose content is \verb!C!. \verb!rands! can be defined likewise.
-
-Now, we are ready to specify the protocol. We use two obsevational functions \verb!nw! and \verb!ur! to observe the network and the set of used random numbers, respectively as follows:
-
-\smallskip
-\begin{small}
-\noindent
-\verb!op nw : Sys -> Network! . \verb!op ur : Sys -> URands!
-\end{small}
-\smallskip
-
-\noindent
-where \verb!Sys! is the sort denoting the state space of IFF, \verb!URands! is the sort denoting the sets of random numbers.
-
-We use five transitions together with one constant of \verb!Sys! to represent an arbitrary initial state as follows:
-
-\begin{small}
-	\begin{verbatim}
-op init  : -> Sys {constr}
-op sdcm  : Sys Prin Prin Rand -> Sys {constr}
-op sdrm  : Sys Prin Msg -> Sys {constr}
-op fkcm1 : Sys Prin Prin Rand -> Sys {constr}
-op fkrm1 : Sys Prin Prin Cipher -> Sys {constr}
-op fkrm2 : Sys Prin Prin Rand -> Sys {constr}
-	\end{verbatim}
-\end{small}
-
-\noindent
-\verb!sdcm! and \verb!sdrm! formalize sending $\rm Check$ and $\rm Reply$ messages exactly following the protocol, respectively.
-The remaining actions \verb!fkcm1!, \verb!fkrm1!, and \verb!fkrm2! are the enemy's faking messages, which can be understood as follows:
-\begin{itemize}
-	\item \verb!fkcm1!: a random number \verb!R! is available to the enemy, the enemy fakes and sends a $\rm Check$ message using \verb!R!, 
-	\item \verb!fkrm1!: a ciphertext \verb!C! is available to the enemy, the enemy fakes and sends a $\rm Reply$ message using \verb!C!, 
-	\item \verb!fkrm2!: a random number \verb!R! is available to the enemy, the enemy fakes and sends a $\rm Reply$ message using \verb!R!.
-\end{itemize}
-
-\verb!sdcm! is defined as follows:
-\begin{small}
-	\begin{verbatim}
-ceq nw(sdcm(S,P1,P2,R)) = (cm(P1,P1,P2,R) ,
-  nw(S)) if c-sdcm(S,P1,P2,R) .
-ceq ur(sdcm(S,P1,P2,R)) = (R ur(S))
-  if c-sdcm(S,P1,P2,R) .
-ceq sdcm(S,P1,P2,R) = S 
-  if not c-sdcm(S,P1,P2,R) .
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!c-sdcm(S,P1,P2,R)! is \verb!not(R \in ur(S))!.
-The equations say that if \verb!c-sdcm(S,P1,P2,R)! is true (i.e., \verb!R! has not been used), then the $\rm Check$ message \verb!cm(P1,P1,P2,R)! is put into the network \verb!nw(S)!, \verb!R! is put into \verb!ur(S)! in the state denoted by \verb!sdcm(S,P1,P2,R)!; if \verb!c-sdcm(S,P1,P2,R)! is false, nothing changes. 
-%\verb!fkrm1! is defined as follows:
-%\begin{small}
-%	\begin{verbatim}
-%ceq nw(fkrm1(S,P1,P2,C)) = rm(enemy,P1,P2,C) , 
-%  nw(S) if c-fkrm1(S,P1,P2,C) .
-%eq ur(fkrm1(S,P1,P2,C))  = ur(S) .
-%ceq fkrm1(S,P1,P2,C) = S 
-%  if not c-fkrm1(S,P1,P2,C) .
-%	\end{verbatim}
-%\end{small}
-%
-%\noindent
-%where \verb!c-fkrm1(S,P1,P2,C)! is \verb!C \in! \verb!ciphers(nw(S))!, 
-%\verb!enemy! is a constant of \verb!Prin! denoting an arbitrary enemy.
-%The equations say that if \verb!c-fkrm1(S,P1,P2,R)! is true, then the $\rm Reply$ message \verb!rm(enemy,P1,P2,C)! is put into the network \verb!nw(S)!, \verb!ur(S)! does not change in the state denoted by \verb!fkrm1(S,P1,P2,C)!; if \verb!c-fkrm1(S,P1,P2,C)! is false, nothing changes. 
-The remaining transitions can be defined likewise.
-
-\subsection{Formal Verification with CiMPA}
-One property of IFF we would like to confirm is whenever $p$ receives a valid $\rm Reply$ message from $q$, $q$ is always a member of the $p$'s group. Such property is called identifiable property in this paper. The property is specified as follows:  
-
-\begin{small}
-	\begin{verbatim}
-op inv1 : Sys Prin Prin Prin Key Rand 
-  -> Bool .
-eq inv1(S,P1,P2,P3,K,R) = ((not(K = k(enemy))
-  and rm(P1,P2,P3,enc(K,R,P2)) \in nw(S)) 
-  implies not(P2 = enemy)) .
-	\end{verbatim}
-\end{small}
-
-We describe how to prove that IFF satisfies the property by writing proof scripts and running with CiMPA. In the proof of \verb!inv1!, we need to use a lemma \verb!inv2! that is as follows:
-\begin{small}
-	\begin{verbatim}
-op inv2 : Sys Key Rand -> Bool .
-eq inv2(S,K,R) = (enc(K,R,enemy) \in 
-  ciphers(nw(S)) implies (K = k(enemy))) .
-	\end{verbatim}
-\end{small}
-
-The proof starts with the goals we need to prove:
-
-\begin{small}
-	\begin{verbatim}
-open IFF .
-  :goal{
-    eq [iff1 :nonexec] : inv1(S:Sys,P:Prin,
-    P1:Prin,P0:Prin,K:Key,R:Rand) = true .
-    eq [iff :nonexec] : 
-    inv2(S:Sys,K:Key,R:Rand) = true . }
-	\end{verbatim}
-\end{small}  
-
-\noindent
-where \verb!IFF! is the module in which the specification of IFF together with \verb!inv1! and \verb!inv2! are available. \verb!:nonexec!  instructs CafeInMaude not to use the equations as rewrite
-rules.
-
-Then, we select \verb!S! with the command \verb!:ind on! as the
-variable on which we start proving the goals by simultaneous
-induction:
-
-\begin{small}
-	\begin{verbatim}
-:ind on (S:Sys)
-:apply(si)
-	\end{verbatim}
-\end{small}
-
-The command \verb!:apply(si)! starts the proof by simultaneous
-induction on \verb!S!, generating six sub-goals for \verb!fkcm1!,
-\verb!fkrm1!, \verb!fkrm2!, \verb!init!, \verb!sdcm!, and \verb!sdrm!, where \verb!si! stands for simultaneous induction. Each sub-goal consists of two equations to prove, corresponding to \verb!inv1! and \verb!inv2!. 
-%We skip the sequence of commands that discharge the first two sub-goals for \verb!exit! and \verb!init!. We partially describe how to discharge the third sub-goal for \verb!try!.  To this end, the first command used is as follows:
-With the first sub-goal for \verb!fkcm1!, we first apply theorem of constants by using the command: \verb!:apply(tc)!.
-The command generates two sub-goals as follows:
-
-\begin{small}
-	\begin{verbatim}
-1-1.> TC eq [iff1 :nonexec]: inv1(fkcm1(
-  S#Sys,P#Prin,P0#Prin,R#Rand),P@Prin,
-  P1@Prin,P0@Prin,K@Key,R@Rand) = true .
-1-2. TC eq [iff :nonexec]: inv2(fkcm1(
-  S#Sys,P#Prin,P0#Prin,R#Rand),K@Key,
-  R@Rand) = true .
-	\end{verbatim}
-\end{small}
-
-\noindent
-The command \verb!:apply(tc)! replaces CafeOBJ
-variables with fresh constants in goals. 
-\verb!S#Sys!, \verb!P#Prin!, \verb!P0#Prin!, and \verb!R#Rand! are fresh constants introduced by \verb!:apply(si)!, 
-while \verb!P@Prin!, \verb!P1@Prin!, \verb!P0@Prin!, \verb!K@Key!, and \verb!R@Rand! are fresh constants introduced by \verb!:apply(tc)!.
-
-%M41
-To discharge goal 1-1, the following commands are first introduced:
-%M5
-\begin{small}
-	\begin{verbatim}
-:def c1 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
-:apply(c1)
-	\end{verbatim}
-\end{small}
-
-\noindent %M51
-Goal 1-1 is split into two sub-goals 1-1-1 and 1-1-2 correspond to when \verb!R#Rand \in rands(nw(S#Sys))! holds and does not hold, respectively. Then, two sub-goals are discharged by the following commands:
-
-\begin{small}
-	\begin{verbatim}
-:imp [iff1] by {K:Key <- K@Key ; 
-  P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
-  P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
-:apply (rd)
-:imp [iff1] by {K:Key <- K@Key ; 
-  P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
-  P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
-:apply (rd)
-	\end{verbatim}
-\end{small}
-
-\noindent
-The induction hypothesis is instantiated by replacing the variables
-with the fresh constants and the instance is used as the premise of the
-implication. For example, \verb!P1:Prin! is replaced with \verb!P1@Prin!.
-Then, \verb!:apply(rd)! is used to check if the current
-goal can be discharged. Two goals 1-1-1 and 1-1-2 are discharged in this case.
-The current goal moves to 1-2.
-
-Goal 1-2 is split into two sub-goals and they are discharged by the following commands:
-
-\begin{small}
-	\begin{verbatim}
-:def c2 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
-:apply(c2)
-:imp [iff] by 
-  {K:Key <- K@Key ; R:Rand <- R@Rand ;}
-:apply (rd)
-:imp [iff] by 
-  {K:Key <- K@Key ; R:Rand <- R@Rand ;}
-:apply (rd)
-	\end{verbatim}
-\end{small}
-
-\noindent
-We have all done with goal 1, the current goal moves to 2. With goal 2, we first introduce the following commands to conduct case splitting.
-
-\begin{small}
-	\begin{verbatim}
-:def c3 = :ctf 
-[C#Cipher \in ciphers(nw(S#Sys)) .]
-:apply(c3)
-:def c4 = :ctf {eq P@Prin  = enemy .}
-:apply(c4)
-:def c5 = :ctf {eq P#Prin  = P1@Prin .}
-:apply(c5)
-:def c6 = :ctf {eq P0#Prin  = P0@Prin .}
-:apply(c6)
-:def c7 = :ctf 
- {eq C#Cipher = enc(K@Key,R@Rand,P1@Prin) .}
-:apply(c7)
-:def c10 = :ctf {eq K@Key  = k(enemy) .}
-:apply(c10)
-	\end{verbatim}
-\end{small}
-
-\noindent
-Case splittings are carried out based on one Boolean term and five equations. 
-The first sub-goal in which the Boolean term is true and five equations hold can be discharged:
-\begin{small}
-	\begin{verbatim}
-:imp [iff1] by {K:Key <- K@Key ; 
-  P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
-  P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
-:apply (rd)
-	\end{verbatim}
-\end{small}
-
-However, with the sub-goals in which the Boolean term is true, first fourth equations hold and the last equation does not hold, we need to conduct case splitting more as well as use \verb!inv2! as a lemma:
-
-\begin{small}
-	\begin{verbatim}
-:def c11 = :ctf {eq P1@Prin  = enemy .}
-:apply(c11)
-:def c12 = :ctf [enc(K@Key,R@Rand,enemy) 
-  \in ciphers(nw(S#Sys)) .]
-:apply(c12)
-:imp [iff] by {K:Key <- K@Key ; 
-  R:Rand <- R@Rand ;}
-:imp [iff1] by {K:Key <- K@Key ; 
-  P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
-  P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
-:apply (rd)
-	\end{verbatim}
-\end{small}
-
-\noindent
-The lemma \verb!inv2! is instantiated by replacing the variables
-\verb!K:Key! and \verb!R:Rand! with the fresh constants \verb!K@Key!
-and \verb!R@Rand!, and the instance is used as the premise of the
-implication. The induction hypothesis is instantiated by
-replacing the variables with the
-fresh constants, and the instance is
-used as the premise of the implication. 
-Then, \verb!:apply(rd)! is
-used to discharge the current goal.
-The remaining sub-goals of 2 can be discharged directly without using any lemma.
-The remaining goals from 3 to 6 can be discharged likewise.
-
-\subsection{Formal Verification with CiMPG}
-The following is the proof score for the case corresponding to goal 1-1-1 in the last section:
-\begin{small}
-	\begin{verbatim}
-open IFF .
-op s : -> Sys .  ops a b c d e : -> Prin .
-op k : -> Key .  ops r1 r2 : -> Rand .
-eq (r2 \in rands(nw(s))) = true .
-red inv1(s,a,b,c,k,r1) 
-implies inv1(fkcm1(s,d,e,r2),a,b,c,k,r1) .
-close
-	\end{verbatim}
-\end{small}
+	%
+	% paper title
+	% can use linebreaks \\ within to get better formatting as desired
+	\title{Formal verification of IFF \& NSLPK authentication protocols with CiMPG}
+	
+	% author names and affiliations
+	% use a multiple column layout for up to two different
+	% affiliations
+	
+	\author{\IEEEauthorblockN{Thet Wai Mon, Shuho Fujii, Duong Dinh Tran, and Kazuhiro Ogata}
+		\IEEEauthorblockA{School of Information Science, 
+			Japan Advanced Institute of Science and Technology (JAIST)\\
+			1-1 Asahidai, Nomi, Ishikawa 923-1292, Japan\\
+			Email: \{thetwaimon,s1910186,duongtd,ogata\}@jaist.ac.jp}
+	}
+	
+	%\author{\IEEEauthorblockN{Authors Name/s per 1st Affiliation (Author)}
+	%\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
+	%line 2: name of organization, acronyms acceptable\\
+	%line 3: City, Country\\
+	%line 4: Email: name@xyz.com}
+	%\and
+	%\IEEEauthorblockN{Authors Name/s per 2nd Affiliation (Author)}
+	%\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
+	%line 2: name of organization, acronyms acceptable\\
+	%line 3: City, Country\\
+	%line 4: Email: name@xyz.com}
+	%}
+	
+	% conference papers do not typically use \thanks and this command
+	% is locked out in conference mode. If really needed, such as for
+	% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+	% after \documentclass
+	
+	% for over three affiliations, or if they all won't fit within the width
+	% of the page, use this alternative format:
+	% 
+	%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+	%Homer Simpson\IEEEauthorrefmark{2},
+	%James Kirk\IEEEauthorrefmark{3}, 
+	%Montgomery Scott\IEEEauthorrefmark{3} and
+	%Eldon Tyrell\IEEEauthorrefmark{4}}
+	%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+	%Georgia Institute of Technology,
+	%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+	%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+	%Email: homer@thesimpsons.com}
+	%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+	%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+	%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+	
+	
+	
+	
+	% use for special paper notices
+	%\IEEEspecialpapernotice{(Invited Paper)}
+	
+	
+	
+	
+	% make the title area
+	\maketitle
+	
+	
+	%\begin{abstract}
+	%The proof score approach has been intensively used to formally verify that the specifications satisfy some desired properties.
+	%CafeOBJ, an algebraic specification language, is used to formally specify the system, and then, the formal verification is conducted by writing proof scores and running them with CafeOBJ.
+	%This paper presents the formal verification with a proof assistant CiMPA for CafeOBJ and with a proof generator CiMPG for CafeOBJ.
+	%Two authentication protocols are presented to illustrate the formal verification: IFF protocol and NSLPK protocol.
+	%%In comparison with the proof score approach, each verification method has advantage as well as disadvantage.
+	%Although writing proof scores is flexible to conduct formal verification, the verification may contain some flaws because proof scores are subject to human errors.
+	%%, for example, users can overlook some cases during the proof.
+	%%While conducting formal verification with CiMPA and CiMPG can guarantee the reliability even though it is quite strict and not easy for non-expert users to tackle.
+	%Using CiMPA to develop formal verification by writing proof scripts can help us to avoid the flaw made by human users
+	%even though its syntax is quite strict.
+	%%However, it is often the case that CiMPA is not flexible enough to conduct formal verification.
+	%CiMPG allows users to combine the flexibility of the proof score approach and the reliability of CiMPA such that it can generate proof scripts from the existing proof scores.
+	%
+	%%While proof scores are flexible to write, they are subject to human errors since users can overlook some cases during the verification.
+	%%The proof scripts are reliable, but they are not easy to develop, especially with non-expert users.
+	%%CiMPG combines the flexibility of proof scores approach and reliability of CiMPA.
+	%%However, it often takes time for CiMPG to generate proof scripts from the existing proof scores.
+	%
+	%\end{abstract}
+	
+	\begin{abstract}
+		Proof scores are programs written in an algebraic specification language, such as CafeOBJ, to conduct formal verification. Thus, the proof score approach to formal verification (PSA2FV) can be regarded as a kind of proving by programming and then flexible. PSA2FV, however, is subject to human errors. To address the issue, a proof assistant called CiMPA was developed for CafeInMaude, the world’s second implementation of CafeOBJ. Furthermore, a proof generator called CiMPG was developed to benefit from the strong points of both PSA2FV and CiMPA. Although some case studies have been conducted with CiMPG, it is necessary to do some more. The present paper reports on case studies in which it is formally verified that two authentication protocols enjoy desired properties with CiMPG.
+	\end{abstract}
+	
+	\begin{IEEEkeywords}
+		algebraic specification language; proof assistant; proof generator; authentication protocol
 		
-\noindent
-where \verb!open! makes the module \verb!IFF! available, \verb!close! stops the use of the module and \verb!red! reduces (computes) the given term. 
-\verb!s! and \verb!k! correspond to \verb!S#Sys! and \verb!K@Key! in the last section, respectively.
-\verb!a!, \verb!b!, \verb!c!, \verb!d!, and \verb!e! correspond to \verb!P@Prin!, \verb!P1@Prin!, \verb!P0@Prin!, \verb!P#Prin!, and \verb!P0#Prin!, respectively.
-\verb!r1! and \verb!r2! correspond to \verb!R@Rand! and \verb!R#Rand!, respectively.
-%The detail of the proof score approach to formal verification can be found in the
-The details of the proof score approach as well as how to write proof scores to conduct formal verification can be found in papers ~\cite{OgataF03fmoods}.
-%Papers~\cite{OgataF03fmoods} has presented the proof score approach as well as the details descriptions how to write proof scores to conduct formal verification.
-In comparison with proof scripts, proof scores are often easier to understand for human users, and writing proof scores are also more flexible than writing proof scripts.
-That is the reason why when conducting formal verification, we prefer to write proof scores rather than proof scripts.
-However, because of the flexibility, proof scores are subject to human errors.
-For example, during the verification users may overlook some cases, leading to the flaw verification.
-
-
-After writing proof scores that IFF protocol enjoys the property, we can confirm that the proof scores are correct by doing the formal verification with CiMPA as described in the last
-section. Although we are able to conduct the formal verification with
-CiMPA once we have completed formal verification by writing proof
-scores in CafeOBJ, it would be preferable to automatically confirm the
-correctness of proof scores. CiMPG makes it possible to automatically
-confirm the correctness of proof scores by generating proof scripts
-for CiMPA from the proof scores.
-
-To use CiMPG, we need to add one more open-close fragment to the proof
-scores, which is as follows:
-
-\smallskip
-\begin{small}
-\noindent
-\verb!open IFF .!\\
-\verb!  :proof(iff)!\\
-\verb!close!
-\smallskip
-\end{small}
-
-
-\noindent
-where \verb!iff! is just an identifier, can be replaced by another one that is more preferred.
-
-Moreover, we need to write \verb!:id(iff)! in each open-close
-fragment. For example, the above open-close fragment becomes as follows:
-
-\begin{small}
-	\begin{verbatim}
-open IFF .
-:proof(iff)
-op s : -> Sys . ops a b c d e : -> Prin .
-op k : -> Key .   ops r1 r2 : -> Rand .
-eq (r2 \in rands(nw(s))) = true .
-red inv1(s,a,b,c,k,r1) 
-implies inv1(fkcm1(s,d,e,r2),a,b,c,k,r1) .
-close
-	\end{verbatim}
-\end{small}
-
-Feeding the annotated proof scores into CiMPG, CiMPG generates the
-proof script for CiMPA. The generated proof script is quite similar to
-the one written manually. Feeding the generated proof script into
-CiMPA, CiMPA discharges all goals, confirming that the proof scores
-are correct. 
-%It took about 626s to generate the proof script with CiMPG.
-
-
-\section{Formal verification of NSLPK}
-\label{sect_nslpk}
-NSLPK \cite{nslpk95} is a modification of NSPK authentication protocol \cite{nspk78} made by Lowe. 
-The NSLPK protocol can be described as the following three message exchanges:
-
-${\rm Init} \ \ \ p \rightarrow q : \varepsilon_q(n_p, p)$
-
-${\rm Resp} \ \, q \rightarrow p : \varepsilon_p(n_p, n_q,q)$
-
-${\rm Ack} \ \ \: p \rightarrow q : \varepsilon_q(n_q)$
-
-\noindent
-Each principal such as $p$ and $q$ has a pair of keys: public and private keys. $\varepsilon_p(m)$ denotes the ciphertext obtained by encrypting the message $m$ with the principal $p$'s public key. $n_p$ is a nonce (a random number) generated by principal $p$. 
-A nonce is a unique and non-guessable number that is used only one time.
-Again, we also suppose that the cryptosystem used is perfect.
-
-\subsection{Formal Specification of the Protocol}
-We introduce following three operators to represent the ciphertexts used in the protocol:
-
-%We first declare the operator \verb!enc! to specify the ciphertexts used in the protocol as follows:
-
-\begin{small}
-\begin{verbatim}
-op enc1 : Prin Nonce Prin -> Cipher1
-op enc2 : Prin Nonce Nonce Prin -> Cipher2
-op enc3 : Prin Nonce -> Cipher3
-\end{verbatim}
-\end{small}
-%
-%op key : Cipher1 -> Principal
-%op nonce : Cipher1 -> Nonce
-%op principal : Cipher1 -> Principal
-%
-%op key : Cipher2 -> Principal
-%op nonce1 : Cipher2 -> Nonce
-%op nonce2 : Cipher2 -> Nonce
-%op principal : Cipher2 -> Principal
-%
-%op key : Cipher3 -> Principal
-%op nonce : Cipher3 -> Nonce
-
-\noindent
-%where \verb!Nonce! is the sort representing symmetric keys,
-% given an agent p, k(p) denotes the key of the p’s group; operator p returns the argument of k(p),
-where 
-\verb!Nonce! is the sort denoting the nonce numbers; 
-%\verb!Prin! is the sort representing principals;
-\verb!Cipher1!, \verb!Cipher2!, and \verb!Cipher3! are the sorts denoting three kinds of ciphertexts contained in Init, Resp, and Ack messages, respectively.
-Given principals $p$, $q$ and a nonce $n_p$ term \verb!enc1(!$q,n_p,p$\verb!)!
-denotes the ciphertext $\varepsilon_q(n_p, p)$ obtained by encrypting $n_p$ and $p$ with principal $q$'s public key.
-\verb!enc2! and \verb!enc3! can be understood likewise.
-%Given a key $k$, a random number $r$ and an agent $p$, 
-%\verb!enc!$(k,r,p)$ denotes the ciphertext obtained by encrypting $r$ and $p$ with $k$.
-%Operators \verb!k!, \verb!r! and \verb!p! return the first, second and third arguments of \verb!enc!$(k, r, p)$, respectively.
-
-
-We specifiy three messages used in NSLPK as follows:
-\begin{small}
-	\begin{verbatim}
-op m1 : Prin Prin Prin Cipher1 -> Msg
-op m2 : Prin Prin Prin Cipher2 -> Msg
-op m3 : Prin Prin Prin Cipher3 -> Msg
-	\end{verbatim}
-\end{small}
-
-%constant enemy denotes the enemy,
-\noindent
-\verb!Msg! as well as three arguments of each operator can be understood as in the specification of IFF explained in the last section.
-%The first, second and third arguments of each of \verb!cm! and \verb!rm! are the actual creator, the seeming sender and the receiver of the corresponding message. The first argument is meta-information that is only available to the outside observer and the agent that has sent the corresponding message, and that cannot be forged by the enemy; while the remaining arguments may be forged by the enemy. 
-%
-%The network is modeled as a multiset of messages, in which the intruder can use as his/her storage. Any message that has been sent or put once into the network is supposed to be never deleted from the network because the intruder can replay the message repeatedly, although the intruder cannot forge the first argument. Consequently, the empty network (i.e., the empty multiset) means that no messages have been sent.
-
-The intruder tries to glean four kinds of values from the network, which are nonces and three kinds of ciphertexts. Then, we use following four operators to denote those values:
-
-\begin{small}
-	\begin{verbatim}
-op cnonce : Network -> ColNonce
-op cenc1 : Network -> ColCipher1
-op cenc2 : Network -> ColCipher2
-op cenc3 : Network -> ColCipher3
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!Network! is the sort denoting networks (i.e., multisets of messages) and \verb!Col!$X$ is a sort denoting collections of values corresponding to the sort $X$. 
-The equations defining \verb!cenc1! are as follows:
-
-\begin{small}
-	\begin{verbatim}
-eq E1 \in cenc1(void) = false .
-ceq E1 \in cenc1(M,NW) = true if m1?(M) and 
-not(key(cipher1(M)) = intruder) and 
-E1 = cipher1(M) .
-ceq E1 \in cenc1(M,NW) = E1 \in cenc1(NW)
-if not(m1?(M) and E1 = cipher1(M)) 
-and not(key(cipher1(M)) = intruder) .
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!E1! is a CafeOBJ variable of \verb!Cipher1!.
-\verb!m1?! checks if a given message is an Init message.
-Operator \verb!cipher1! takes an Init message as an argument and returns its ciphertext (i.e., the fourth argument of \verb!m1! operator).
-Operator \verb!key! takes a ciphertext as an argument and returns the principal in which the ciphertext is encrypted with its public key. 
-\verb!void!, \verb!M!, \verb!NW!, as well as \verb!(M,NW)! can be understood as explained in the last section.
-The equations say that a ciphertext \verb!E1! is available to the enemy iff there exists an Init message whose content is \verb!E1! and \verb!E1! is not encrypted by the intruder's public key. 
-Let us note that, if \verb!E1! is encrypted by the intruder's public key, \verb!E1! can be rebuilt by the intruder.
-%The equations say that 
-\verb!cnonce!, \verb!cenc2!, and \verb!cenc3! can be defined likewise.
-
-%We use sort \verb!Sys! to denote the state space of the protocol.
-We use two observers, nine transitions, together with one constant that represents an arbitrary initial state to specify NSLPK as follows:
-
-\begin{small}
-	\begin{verbatim}
-op ur : Sys -> URand . op nw : Sys -> Network
-op init : -> Sys {constr}
-op sdm1 : Sys Prin Prin Rand -> Sys {constr}
-op sdm2 : Sys Prin Rand Msg -> Sys {constr}
-op sdm3 : Sys Prin Rand Msg Msg  -> Sys 
-  {constr}
-op fkm11 : Sys Prin Prin Cipher1 -> Sys 
-  {constr}
-op fkm12 : Sys Prin Prin Nonce -> Sys {constr}
-op fkm21 : Sys Prin Prin Cipher2 -> Sys 
-  {constr}
-op fkm22 : Sys Prin Prin Nonce Nonce -> Sys 
-  {constr}
-op fkm31 : Sys Prin Prin Cipher3 -> Sys 
-  {constr}
-op fkm32 : Sys Prin Prin Nonce -> Sys {constr}
-	\end{verbatim}
-\end{small}
-
-
-\noindent
-where \verb!URand! is the sort denoting sets of random numbers.
-\verb!ur!, \verb!nw!, and \verb!init! can be understood as in the last section.
-The first three transitions formalize sending messages exactly following the protocol, while the remaining formalize the intruder's faking messages, which can be understood as follows:
-
-\begin{itemize}
-	\item \verb!fkm11!, \verb!fkm21!, and \verb!fkm31!: a ciphertext \verb!C! is available to the intruder, the intruder fakes and sends a/an Init, or Resp, or Ack message using \verb!C!, respectively.
-	\item \verb!fkm12! and \verb!fkm32!: a nonce \verb!N! is available to the intruder, the intruder fakes and sends an Init or Ack message using \verb!N!, respectively, 
-	\item \verb!fkm22!: two nonces \verb!N1! and \verb!N2! are available to the intruder, the intruder fakes and sends a Resp message using \verb!N1! and \verb!N2!.
-\end{itemize}
-
-
-%\verb!sdcm! is defined as follows:
-%\begin{small}
-%	\begin{verbatim}
-%		ceq nw(sdcm(F,P1,P2,R)) = (cm(P1,P1,P2,R) ,
-%		nw(F)) if c-sdcm(F,P1,P2,R) .
-%		ceq ur(sdcm(F,P1,P2,R)) = (R ur(F))
-%		if c-sdcm(F,P1,P2,R) .
-%		ceq sdcm(F,P1,P2,R) = F 
-%		if not c-sdcm(F,P1,P2,R) .
-%	\end{verbatim}
-%\end{small}
-%
-%\noindent
-%where \verb!c-sdcm(F,P1,P2,R)! is \verb!not(R \in ur(F))!.
-%The equations say that if \verb!c-sdcm(F,P1,P2,R)! is true, then the Check message \verb!cm(P1,P1,P2,R)! is put into the network \verb!nw(F)!, the random number \verb!R! used by the sender is put into \verb!ur(F)! in the state denoted by \verb!sdcm(F,P1,P2,R)!; if \verb!sdcm(F,P1,P2,R)! is false, nothing changes. 
-
-Let \verb!S! be a CafeOBJ variable of \verb!Sys!, and \verb!P! \& \verb!Q! are CafeOBJ variables of \verb!Prin!.
-\verb!fkm11! is defined as follows:
-\begin{small}
-	\begin{verbatim}
-eq  ur(fkm11(S,P,Q,E1)) = ur(S) .
-ceq nw(fkm11(S,P,Q,E1)) = m1(intruder,P,Q,E1)
-  , nw(S) if c-fkm11(S,P,Q,E1) .
-ceq fkm11(S,P,Q,E1) = S 
-  if not c-fkm11(S,P,Q,E1) .
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!c-fkm11(S,P,Q,E1)! is \verb!E1 \in! \verb!cenc1(nw(S))!, 
-\verb!intruder! is a constant of \verb!Prin! denoting the intruder. The equations say that if \verb!c-fkm11(S,P,Q,E1)! is true, then the Init message \verb!m1(intruder,P,Q,E1)! is put into the network \verb!nw(S)!, \verb!ur(S)! does not change in the state denoted by \verb!fkm11(S,P,Q,E1)!; if \verb!c-fkm11(S,P,Q,E1)! is false, nothing changes. The remaining transitions can be defined likewise.
-
-
-
-\subsection{Formal Verification with CiMPA and CiMPG}
-There are two properties of NSLPK that we would like to verify namely nonce secrecy property and one-to-many correspondence property.
-The former says that all nonces available to the intruder are those created by the intruder or those created for the intruder. Let \verb!N! be a CafeOBJ variable of \verb!Nonce!, respectively, we specify the nonce secrecy property as follows:
-
-\begin{small}
-	\begin{verbatim}
-eq inv130(S,N) = (N \in cnonce(nw(S)) 
-implies (creator(N) = intruder or 
-forwhom(N) = intruder)) .
-	\end{verbatim}
-\end{small}
-
-The one-to-many correspondence property is specified as follows:
-\begin{small}
-	\begin{verbatim}
-eq inv170(S,P,Q,Q1,R,N) = (not(P = intruder)
-and m1(P,P,Q,enc1(Q,n(P,Q,R),P)) \in nw(S) 
-and m2(Q1,Q,P,enc2(P,n(P,Q,R),N,Q)) \in nw(S)
-implies 
-m2(Q,Q,P,enc2(P,n(P,Q,R),N,Q)) \in nw(S)) .
-	\end{verbatim}
-\end{small}
-\begin{small}
-	\begin{verbatim}
-eq inv180(S,P,Q,P1,R,N) = (not(Q = intruder)
-and m2(Q,Q,P,enc2(P,N,n(Q,P,R),Q)) \in nw(S)
-and m3(P1,P,Q,enc3(Q,n(Q,P,R))) \in nw(S)
-implies
-m3(P,P,Q,enc3(Q,n(Q,P,R))) \in nw(S)) .
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!P1! \& \verb!Q1! are CafeOBJ variables of \verb!Prin!, \verb!R! is a CafeOBJ variable of \verb!Rand!.
-\verb!inv170! says that whenever \verb!P! successfully sent an $\rm Init$ message to \verb!Q!, and
-received a corresponding $\rm Resp$ seemingly from \verb!Q!,
-%\verb!Q! successfully sent back to \verb!P! an $\rm Resp$ message,
-the principal that \verb!P! is communicating with is really \verb!Q! even though there are malicious principals (e.g., \verb!Q1!).
-\verb!inv180! can be understood likewise.
-%The equations say that 
-%Whenever a protocol run is successfully
-%completed by p and q,
-%the principal with which p is communicating is really q,
-%and
-%the principal with which q is communicating is really p
-%even if there are malicious principals. 
-
-To verify the nonce secrecy property, we prove that \verb!inv130! is an invariant of the OTS formalizing NSLPK. 
-The formal verification is also conducted in two ways: by writting proof scripts with CiMPA and by using CiMPG to generate proof scripts from proof scores.
-Both of them require the use of the following lemmas:
-
-\begin{small}
-	\begin{verbatim}
-eq inv100(S,E1) = (E1 \in cenc1(nw(S)) 
- implies not(key(E1) = intruder)) .
-eq inv110(S,E2) = (E2 \in cenc2(nw(S)) 
- implies not(key(E2) = intruder)) .
-eq inv120(S,E3) = (E3 \in cenc3(nw(S)) 
- implies not(key(E3) = intruder)) .
-eq inv140(S,E1) = (E1 \in cenc1(nw(S)) and 
-principal(E1) = intruder 
- implies nonce(E1) \in cnonce(nw(S))) .
-eq inv150(S,E2) = (E2 \in cenc2(nw(S)) and 
-principal(E2) = intruder
- implies nonce2(E2) \in cnonce(nw(S))) .
-eq inv160(S,N) = (creator(N) = intruder 
- implies N \in cnonce(nw(S))) .
-	\end{verbatim}
-\end{small}
-
-\noindent
-where \verb!E2! and \verb!E3! are CafeOBJ variables of \verb!Cipher2! and \verb!Cipher3!, respectively.
-
-In each way of verification, what we need to do is quite similar to what we have described in the last section with formal verification of IFF. 
-However, with CiMPG, we also need to make some modifications to the existing proof scores. 
-Let us consider an example in which we want to split the current case into two sub-cases: (1) message \verb!m! is in \verb!nw(s)!, which is the network of the current state, and (2) \verb!m! is not in \verb!nw(s)!.
-CafeOBJ allows us to write proof scores to conduct case splitting by introducing two equations: (i) \verb!nw(s) = (m , nw')! to characterize (1) and (ii) \verb!m \in nw(s) = false! to characterize (2), where \verb!nw'! is a constant denoting an arbitrary network (or list of messages).
-%But CiMPA does not accept this kind of case splitting. 
-With CiMPA, if we declare equation (i) and apply for case splitting, then it will automatically split the current goal into two sub-goals in which (i) holds in the first sub-goal, while it does not hold in the second one. Thus, the second sub-goal is characterized by the equation \verb!(nw(s) = (m , nw')) = false!. 
-In this sub-goal, it does not guarantee that \verb!m! is not in \verb!nw(s)! since \verb!m! can be in \verb!nw'!.
-CiMPG also can not recognize that the use of two equations (i) and (ii) for case splitting is correct.
-In the existing proof scores of formal verification of NSLPK, there are many times in which case splitting is ``flexibly'' applied in the same way as based on two equations (i) and (ii) mentioned above.
-This flexible case splitting is an advantage of the CafeOBJ/proof score method but also is a disadvantage because we need to ensure that the equations used for case splitting cover every case and do not overlap each other.
-However, to make it possible for CiMPG to generate the proof scripts, the existing proof score needs to be modified.
-With the example mentioned above, two equations used for case splitting should be \verb!m \in nw(s) = true! and \verb!m \in nw(s) = false!.
-%That is the reason why we need to make some modifications on the existing proof scores.
-%We need to make
-
-%We do not describe the details again. The full proof scripts, proof scores of the formal verification can be found at \url{http://...}.
-
-%\subsection{Formal Verification with CiMPG}
-%This section describes the formal verification of NSLPK with CiMPG. 
-
-
-%\section{Related Work}
-%\label{sect_rw}
-%The third and fourth authors of the present paper have made an abstract version of Anderson mutual exclusion protocol, namely A-Anderson protocol, and formally verified that A-Anderson enjoys the mutual exclusion property~\cite{duongtd20}. The verification is conducted in three ways: by writing proof scores, with CiMPA, and with CiMPG. 
-%The reason why did not conduct formal verification with the original version Anderson is that the protocol uses a finite Boolean array and the modulo (or remainder) operation of natural numbers, causing the challenge to conduct formal verification in a sense of theorem proving.
-%The paper has also mentioned how to formally verify that Anderson enjoys the mutual exclusion property by showing that there exists a simulation relation from Anderson to A-Anderson, and such simulation preserves the property. The details of this verification technique, however, were not presented in~\cite{duongtd20} due to the page-limitation.
-%They mentioned that they would report that part in a longer version.
-%
-%Futatsugi and Ogata~\cite{futatsugi05} have demonstrated the proof score approach to formal verification designs of software.
-%IFF protocol was used as an example to illustrate the method.
-%They have formally verified that if principal $p$ receives a valid $\rm Reply$ message from principal $q$, $q$ is always a member of the $p$'s group.
-%
-%Riesco and Ogata~\cite{adrian20} have presented CiMPG+F, which is an extension of the CafeInMaude.
-%% interpreter that, for a large class of CafeOBJ specifications, 
-%Giving a CafeOBJ specification, CiMPG+F provides two main features: generating complete proofs from scratch and fixing incomplete proof scores. 
-%In the former, users are required to introduce the properties to be proven and the induction variable, then CiMPG+F tries to infer proof scripts that prove the given properties.
-%In the latter, either when proof scripts can not be generated from scratch or when users want to generate proof scripts from incomplete proof scores, CiMPG+F tries to fix them by using the given information to prune the search space, or users can provide a (partial) proof score guiding the process. 
-%Thus, CiMPG+F is in charge of the mechanical work and leaves users the creative tasks.
-%The performance of the tool has been tested with some protocols.
-%With complicated case studies, the tool takes time to generate the proof scripts.
-%
-%%Nakano et al.~\cite{nakano07} have proposed a method that can automatically verify that OTSs specified in Maude enjoy invariant properties. The proposed method is based on fixed-point computation, which is one of the standard techniques for automatic (invariant) verification. 
-%%Based on the proposed method, a tool named Crème has been developed. 
-%%Two case studies have been presented with NSLPK and NSPK protocols.
-%%Crème has automatically verified that NSLPK protocol enjoys a desired property, while it found a counterexample showing that NSPK does not satisfy the property.
-
-\section{Conclusion}
-\label{sect_concl}
-This paper has presented the formal verifications with proof assistant CiMPA and with proof generator CiMPG. 
-In comparison with the proof score approach, each verification method has advantages as well as disadvantages. 
-While proof scores are flexible to write, they are subject to human errors since human users can overlook some cases during the verification. 
-The proof scripts are reliable, but they are not easy to develop, especially with non-expert users. 
-CiMPG combines the flexibility of the proof score approach and the reliability of CiMPA. However, it often takes time for CiMPG to generate proof scripts when the size of input proof scores is big. 
-Two case studies are presented in which we formally verify that IFF protocol enjoys the identifiable property, and NSLPK enjoys the nonce secrecy and one-to-many correspondence properties.
-%In the future, we aim to develop a tool that can automatically generate proof scores for formal systems specifications and formal property specifications provided auxiliary lemmas.
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation Results}
-%\label{fig_sim}
-%\end{figure}
-
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
-
-
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command, the
-% \label for the overall figure must come after \caption.
-% \hfil must be used as a separator to get equal spacing.
-% The subfigure.sty package works much the same way, except \subfigure is
-% used instead of \subfloat.
-%
-%\begin{figure*}[!t]
-%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
-%\label{fig_second_case}}}
-%\caption{Simulation results}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-
-
-% An example of a floating table. Note that, for IEEE style tables, the 
-% \caption command should come BEFORE the table. Table text will default to
-% \footnotesize as IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
-
-
-% Note that IEEE does not put floats in the very first column - or typically
-% anywhere on the first page for that matter. Also, in-text middle ("here")
-% positioning is not used. Most IEEE journals/conferences use top floats
-% exclusively. Note that, LaTeX2e, unlike IEEE journals/conferences, places
-% footnotes above bottom floats. This can be corrected via the \fnbelowfloat
-% command of the stfloats package.
-
-
-% conference papers do not normally have an appendix
-
-
-% use section* for acknowledgement
-% \section*{Acknowledgment}
-
-% The authors would like to thank...
-% more thanks here
-
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-% \IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-% \IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-\bibliographystyle{IEEEtran} \bibliography{seke21_nslpk}
-%\bibliographystyle{IEEEtran} \bibliography{IEEEabrv,paper}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
-
-% \begin{thebibliography}{1}
-% 
-% \bibitem{IEEEhowto:kopka}
-% H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-%   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-% 
-% \end{thebibliography}
-
-% that's all folks
+		% anti-fairness; fairness; linear temporal logic; liveness property;
+		% model checking;
+	\end{IEEEkeywords}
+	
+	
+	% For peer review papers, you can put extra information on the cover
+	% page as needed:
+	% \ifCLASSOPTIONpeerreview
+	% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+	% \fi
+	%
+	% For peerreview papers, this IEEEtran command inserts a page break and
+	% creates the second title. It will be ignored for other modes.
+	\IEEEpeerreviewmaketitle
+	
+	\section{Introduction}
+	Theorem proving that systems enjoy some desired properties by writing proof scores have been intensively used.
+	This approach uses observational transition systems (OTSs) \cite{OgataF03fmoods} as state machines to formalize systems. 
+	Then, the OTSs are specified in CafeOBJ \cite{DiaconescuF98amast}, which is a formal specification language. 
+	Formal verification is conducted by writing what is called ``proof scores'' \cite{OgataF03fmoods} in CafeOBJ and executing them with CafeOBJ. 
+	%Proof scores are developed by simultaneous structural induction on a state variable of the OTS. 
+	Although writing proof scores is flexible to conduct formal verification, the proof may contain some flaws since proof scores are subject to human errors (e.g., users may overlook some cases during the proof).
+	
+	
+	CafeInMaude is the second implementation in Maude of CafeOBJ in addition to the original implementation in Common Lisp, where Maude~\cite{ClavelEtal2007maude} is a sibling language of CafeOBJ.
+	%because both of them are the direct successors of OBJ3, a well-known algebraic specification language.
+	CafeInMaude introduces CafeOBJ specifications into the Maude system. 
+	It comes with two extension tools  CafeInMaude Proof Assistant (CiMPA) and CafeInMaude Proof Generator (CiMPG)~\cite{RiescoO18tosem}. 
+	CiMPA is a proof assistant that allows users to write proof scripts in order to prove invariant properties on their CafeOBJ specifications. CiMPG provides a minimal set of annotations for identifying proof scores and generating CiMPA scripts for these proof scores. 
+	Using CiMPA to develop the formal verification by writing proof scripts can help us to avoid the flaw made by human users as in the proof score approach. 
+	However, it is often the case that CiMPA is not flexible enough to conduct formal verification.
+	CiMPG allows users to combine the flexibility of the proof score approach and the reliability of CiMPA. Given proof scores that should be slightly annotated, CiMPG generates proof scripts for CiMPA. Feeding the generated proof scripts into CiMPA, if CiMPA successfully discharges all goals, the proof scores are correct for the goals. 
+	%By conducting formal verification in three ways, we triple-check the correctness of our proofs.
+	
+	%We have intensively used proof scores to theorem prove that equational theory specifications of observational transition systems (OTSs) have properties.
+	This paper presents the formal verification with CiMPA and CiMPG of two authentication protocols: Identity-Friend-or-Foe authentication protocol (IFF)~\cite{iff2001} and Needham-Schroeder-Lowe Public Key authentication protocol (NSLPK)~\cite{nslpk95}.
+	The former is a simple protocol used to check if a principal (or an agent) is a member of a group.
+	%We formally verify that IFF enjoys the {\underline{ABC}} property
+	The latter is an advanced authentication protocol, which is a modification of NSPK protocol \cite{nspk78} made by Lowe.
+	We use CiMPA and CiMPG to formally verify that: (1) IFF enjoys the identifiable property, and (2) NSLPK enjoys the nonce secrecy property and one-to-many correspondence property.
+	
+	%The remains of the paper are organized as follows: Sect.\,\ref{sect_iff} describes IFF protocol, how to specify IFF in CafeOBJ, its formal verification with CiMPA as well as CiMPG. 
+	%Sect.\,\ref{sect_nslpk} describes NSLPK protocol, its formal specification in CafeOBJ, the formal verification with CiMPA and CiMPG. 
+	%how to formally verify that
+	%Anderson protocol enjoys the mutual exclusion property by showing that
+	%A-Anderson protocol simulates Anderson protocol. 
+	%Some related work is mentioned in Sect.\,\ref{sect_rw}. 
+	%Finally, Sect.\,\ref{sect_concl} concludes the paper.
+	
+	Although it has been formally verified that NSLPK enjoys the nonce secrecy property with CiMPG~\cite{RiescoO18tosem}, we are the first to formally verify that NSLPK enjoys the one-to-many correspondence property with CiMPG as well as CiMPA. IFF is a tiny protocol but nobody has formally verified that it enjoys a desired property with either CiMPA or CiMPG. 
+	All specifications and proofs presented in this paper are available at \url{https://github.com/twmon14/fvap}.
+	
+	\section{Formal verification of IFF}
+	\label{sect_iff}
+	IFF \cite{iff2001} is used to check if a principal is a member of a group. The IFF protocol can be described as the following two message exchanges:
+	
+	${\rm Check} \ \ \: p \rightarrow q : r$
+	
+	${\rm Reply}  \ \ \ q \rightarrow p : \varepsilon_k(r,q)$
+	
+	\noindent
+	Each principal (or agent) such as $p$ and $q$ belongs to only one group.
+	A symmetric key is given to each group, whose members share the key, and keys are different from group to group. If a principal $p$ wants to check if a principal $q$ is a member of the $p$'s group, $p$ generates a fresh random number $r$ and sends it to $q$ as a $\rm Check$ message. 
+	On receipt of the message, $q$ sends back to $p$ a $\rm Reply$ message that consists of $r$ and ID $q$ encrypted by the symmetric key $k$ of the $q$'s group. 
+	When $p$ receives the $\rm Reply$ message, $p$ tries to decrypt the ciphertext received with the symmetric key of the $p$'s group. 
+	If the decryption succeeds and the plaintext consists of $r$ and $q$, $p$ then concludes that $q$ is a member of the $p$'s group. 
+	%The protocol is supposed to have the property that if $p$ receives a valid $\rm Reply$ message from $q$, $q$ is always a member of the $p$'s group. The property is called the IFF property in this paper.
+	
+	We suppose that the cryptosystem used is perfect, there is only one legitimate group, all members of the group are trustable, and there are also untrustable principals who are not members. Trustable principals exactly follow the protocol, but untrustable ones may do something against the protocol as well. The combination and cooperation of untrustable principals is modeled as the most general enemy (or intruder). The enemy gleans as much information as possible from messages flowing in the network and creates fake messages based on the gleaned information, provided that the enemy cannot break the perfect cryptosystem.
+	
+	
+	\subsection{Formal Specification of the Protocol}
+	We first declare the operator \verb!enc! to specify the ciphertexts used in the protocol as follows:
+	
+	\smallskip
+	\begin{small}
+		\noindent
+		\verb!op enc : Key Rand Prin -> Cipher .!\\
+		\verb!op k : Cipher -> Key . op r : Cipher -> Rand! .\\
+		\verb!op p : Cipher -> Prin .!
+	\end{small}
+	\smallskip
+	
+	\noindent
+	where \verb!Key! is the sort (or type) representing symmetric keys,
+	% given an agent p, k(p) denotes the key of the p’s group; operator p returns the argument of k(p),
+	\verb!Rand! is the sort denoting random numbers, 
+	\verb!Prin! is the sort representing principals, and
+	\verb!Cipher! is the sort denoting ciphertexts.
+	Given a key $k$, a random number $r$ and a principal $p$, 
+	\verb!enc!$(k,r,p)$ denotes the ciphertext obtained by encrypting $r$ and $p$ with $k$.
+	Operators \verb!k!, \verb!r! and \verb!p! return the first, second and third arguments of \verb!enc!$(k, r, p)$, respectively.
+	
+	
+	We specifiy two messages $\rm Check$ and $\rm Reply$ by two operators \verb!cm! and \verb!rm! as follows:
+	\begin{small}
+		\begin{verbatim}
+			op cm : Prin Prin Prin Rand   -> Msg
+			op rm : Prin Prin Prin Cipher -> Msg
+		\end{verbatim}
+	\end{small}
+	
+	%constant enemy denotes the enemy,
+	\noindent
+	where \verb!Msg! is the sort denoting messages.
+	The first, second and third arguments of each of \verb!cm! and \verb!rm! are the actual creator, the seeming sender and the receiver of the corresponding message. The first argument is meta-information that is only available to the outside observer and the principal that has sent the corresponding message, and that cannot be forged by the enemy; while the remaining arguments may be forged by the enemy. 
+	
+	The network is modeled as a multiset of messages, in which the enemy can use as his/her storage. Any message that has been sent or put once into the network is supposed to be never deleted from the network because the enemy can replay the message repeatedly, although the enemy cannot forge the first argument. Consequently, the empty network (i.e., the empty multiset) means that no messages have been sent.
+	
+	The enemy tries to glean two kinds of values from the network, which are random numbers and ciphertexts. The collections of these values gleaned by the enemy are denoted by operators \verb!rands! and \verb!ciphers!, which are declared as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			op rands   : Network -> ColRands
+			op ciphers : Network -> ColCiphers
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!Network! is the sort denoting networks, \verb!ColRands! is the sort denoting collections of random numbers, and \verb!ColCiphers! is the sort denoting collections of ciphertexts. 
+	\verb!ciphers! is defined by the following equations:
+	
+	\begin{small}
+		\begin{verbatim}
+			eq C \in ciphers(void) = false .
+			ceq C \in ciphers(M , NW) = true if rm?(M)
+			and C = c(M) .
+			ceq C \in ciphers(M , NW) = C \in ciphers(NW) 
+			if not(rm?(M) and C = c(M)) .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!void! denotes the empty multiset (or empty network),
+	operator \verb!rm?! checks if a given message is a $\rm Reply$ message,
+	operator \verb!c! takes a $\rm Reply$ message as a parameter and returns its ciphertext (i.e., the fourth argument of \verb!rm! operator),
+	\verb!\in! is an infix operator checking the existence of an element in a collection,
+	and operator \verb!,! in \verb!M , NW! denotes the data constructor of nonempty multisets. 
+	The equations say that a ciphertext \verb!C! is available to the enemy iff there exists a $\rm Reply$ message whose content is \verb!C!. \verb!rands! can be defined likewise.
+	
+	Now, we are ready to specify the protocol. We use two obsevational functions \verb!nw! and \verb!ur! to observe the network and the set of used random numbers, respectively as follows:
+	
+	\smallskip
+	\begin{small}
+		\noindent
+		\verb!op nw : Sys -> Network! . \verb!op ur : Sys -> URands!
+	\end{small}
+	\smallskip
+	
+	\noindent
+	where \verb!Sys! is the sort denoting the state space of IFF, \verb!URands! is the sort denoting the sets of random numbers.
+	
+	We use five transitions together with one constant of \verb!Sys! to represent an arbitrary initial state as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			op init  : -> Sys {constr}
+			op sdcm  : Sys Prin Prin Rand -> Sys {constr}
+			op sdrm  : Sys Prin Msg -> Sys {constr}
+			op fkcm1 : Sys Prin Prin Rand -> Sys {constr}
+			op fkrm1 : Sys Prin Prin Cipher -> Sys {constr}
+			op fkrm2 : Sys Prin Prin Rand -> Sys {constr}
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	\verb!sdcm! and \verb!sdrm! formalize sending $\rm Check$ and $\rm Reply$ messages exactly following the protocol, respectively.
+	The remaining actions \verb!fkcm1!, \verb!fkrm1!, and \verb!fkrm2! are the enemy's faking messages, which can be understood as follows:
+	\begin{itemize}
+		\item \verb!fkcm1!: a random number \verb!R! is available to the enemy, the enemy fakes and sends a $\rm Check$ message using \verb!R!, 
+		\item \verb!fkrm1!: a ciphertext \verb!C! is available to the enemy, the enemy fakes and sends a $\rm Reply$ message using \verb!C!, 
+		\item \verb!fkrm2!: a random number \verb!R! is available to the enemy, the enemy fakes and sends a $\rm Reply$ message using \verb!R!.
+	\end{itemize}
+	
+	\verb!sdcm! is defined as follows:
+	\begin{small}
+		\begin{verbatim}
+			ceq nw(sdcm(S,P1,P2,R)) = (cm(P1,P1,P2,R) ,
+			nw(S)) if c-sdcm(S,P1,P2,R) .
+			ceq ur(sdcm(S,P1,P2,R)) = (R ur(S))
+			if c-sdcm(S,P1,P2,R) .
+			ceq sdcm(S,P1,P2,R) = S 
+			if not c-sdcm(S,P1,P2,R) .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!c-sdcm(S,P1,P2,R)! is \verb!not(R \in ur(S))!.
+	The equations say that if \verb!c-sdcm(S,P1,P2,R)! is true (i.e., \verb!R! has not been used), then the $\rm Check$ message \verb!cm(P1,P1,P2,R)! is put into the network \verb!nw(S)!, \verb!R! is put into \verb!ur(S)! in the state denoted by \verb!sdcm(S,P1,P2,R)!; if \verb!c-sdcm(S,P1,P2,R)! is false, nothing changes. 
+	%\verb!fkrm1! is defined as follows:
+	%\begin{small}
+	%	\begin{verbatim}
+	%ceq nw(fkrm1(S,P1,P2,C)) = rm(enemy,P1,P2,C) , 
+	%  nw(S) if c-fkrm1(S,P1,P2,C) .
+	%eq ur(fkrm1(S,P1,P2,C))  = ur(S) .
+	%ceq fkrm1(S,P1,P2,C) = S 
+	%  if not c-fkrm1(S,P1,P2,C) .
+	%	\end{verbatim}
+	%\end{small}
+	%
+	%\noindent
+	%where \verb!c-fkrm1(S,P1,P2,C)! is \verb!C \in! \verb!ciphers(nw(S))!, 
+	%\verb!enemy! is a constant of \verb!Prin! denoting an arbitrary enemy.
+	%The equations say that if \verb!c-fkrm1(S,P1,P2,R)! is true, then the $\rm Reply$ message \verb!rm(enemy,P1,P2,C)! is put into the network \verb!nw(S)!, \verb!ur(S)! does not change in the state denoted by \verb!fkrm1(S,P1,P2,C)!; if \verb!c-fkrm1(S,P1,P2,C)! is false, nothing changes. 
+	The remaining transitions can be defined likewise.
+	
+	\subsection{Formal Verification with CiMPA}
+	One property of IFF we would like to confirm is whenever $p$ receives a valid $\rm Reply$ message from $q$, $q$ is always a member of the $p$'s group. Such property is called identifiable property in this paper. The property is specified as follows:  
+	
+	\begin{small}
+		\begin{verbatim}
+			op inv1 : Sys Prin Prin Prin Key Rand 
+			-> Bool .
+			eq inv1(S,P1,P2,P3,K,R) = ((not(K = k(enemy))
+			and rm(P1,P2,P3,enc(K,R,P2)) \in nw(S)) 
+			implies not(P2 = enemy)) .
+		\end{verbatim}
+	\end{small}
+	
+	We describe how to prove that IFF satisfies the property by writing proof scripts and running with CiMPA. In the proof of \verb!inv1!, we need to use a lemma \verb!inv2! that is as follows:
+	\begin{small}
+		\begin{verbatim}
+			op inv2 : Sys Key Rand -> Bool .
+			eq inv2(S,K,R) = (enc(K,R,enemy) \in 
+			ciphers(nw(S)) implies (K = k(enemy))) .
+		\end{verbatim}
+	\end{small}
+	
+	The proof starts with the goals we need to prove:
+	
+	\begin{small}
+		\begin{verbatim}
+			open IFF .
+			:goal{
+				eq [iff1 :nonexec] : inv1(S:Sys,P:Prin,
+				P1:Prin,P0:Prin,K:Key,R:Rand) = true .
+				eq [iff :nonexec] : 
+				inv2(S:Sys,K:Key,R:Rand) = true . }
+		\end{verbatim}
+	\end{small}  
+	
+	\noindent
+	where \verb!IFF! is the module in which the specification of IFF together with \verb!inv1! and \verb!inv2! are available. \verb!:nonexec!  instructs CafeInMaude not to use the equations as rewrite
+	rules.
+	
+	Then, we select \verb!S! with the command \verb!:ind on! as the
+	variable on which we start proving the goals by simultaneous
+	induction:
+	
+	\begin{small}
+		\begin{verbatim}
+			:ind on (S:Sys)
+			:apply(si)
+		\end{verbatim}
+	\end{small}
+	
+	The command \verb!:apply(si)! starts the proof by simultaneous
+	induction on \verb!S!, generating six sub-goals for \verb!fkcm1!,
+	\verb!fkrm1!, \verb!fkrm2!, \verb!init!, \verb!sdcm!, and \verb!sdrm!, where \verb!si! stands for simultaneous induction. Each sub-goal consists of two equations to prove, corresponding to \verb!inv1! and \verb!inv2!. 
+	%We skip the sequence of commands that discharge the first two sub-goals for \verb!exit! and \verb!init!. We partially describe how to discharge the third sub-goal for \verb!try!.  To this end, the first command used is as follows:
+	With the first sub-goal for \verb!fkcm1!, we first apply theorem of constants by using the command: \verb!:apply(tc)!.
+	The command generates two sub-goals as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			1-1.> TC eq [iff1 :nonexec]: inv1(fkcm1(
+			S#Sys,P#Prin,P0#Prin,R#Rand),P@Prin,
+			P1@Prin,P0@Prin,K@Key,R@Rand) = true .
+			1-2. TC eq [iff :nonexec]: inv2(fkcm1(
+			S#Sys,P#Prin,P0#Prin,R#Rand),K@Key,
+			R@Rand) = true .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	The command \verb!:apply(tc)! replaces CafeOBJ
+	variables with fresh constants in goals. 
+	\verb!S#Sys!, \verb!P#Prin!, \verb!P0#Prin!, and \verb!R#Rand! are fresh constants introduced by \verb!:apply(si)!, 
+	while \verb!P@Prin!, \verb!P1@Prin!, \verb!P0@Prin!, \verb!K@Key!, and \verb!R@Rand! are fresh constants introduced by \verb!:apply(tc)!.
+	
+	%M41
+	To discharge goal 1-1, the following commands are first introduced:
+	%M5
+	\begin{small}
+		\begin{verbatim}
+			:def c1 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
+			:apply(c1)
+		\end{verbatim}
+	\end{small}
+	
+	\noindent %M51
+	Goal 1-1 is split into two sub-goals 1-1-1 and 1-1-2 correspond to when \verb!R#Rand \in rands(nw(S#Sys))! holds and does not hold, respectively. Then, two sub-goals are discharged by the following commands:
+	
+	\begin{small}
+		\begin{verbatim}
+			:imp [iff1] by {K:Key <- K@Key ; 
+				P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
+				P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+			:apply (rd)
+			:imp [iff1] by {K:Key <- K@Key ; 
+				P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
+				P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+			:apply (rd)
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	The induction hypothesis is instantiated by replacing the variables
+	with the fresh constants and the instance is used as the premise of the
+	implication. For example, \verb!P1:Prin! is replaced with \verb!P1@Prin!.
+	Then, \verb!:apply(rd)! is used to check if the current
+	goal can be discharged. Two goals 1-1-1 and 1-1-2 are discharged in this case.
+	The current goal moves to 1-2.
+	
+	Goal 1-2 is split into two sub-goals and they are discharged by the following commands:
+	
+	\begin{small}
+		\begin{verbatim}
+			:def c2 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
+			:apply(c2)
+			:imp [iff] by 
+			{K:Key <- K@Key ; R:Rand <- R@Rand ;}
+			:apply (rd)
+			:imp [iff] by 
+			{K:Key <- K@Key ; R:Rand <- R@Rand ;}
+			:apply (rd)
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	We have all done with goal 1, the current goal moves to 2. With goal 2, we first introduce the following commands to conduct case splitting.
+	
+	\begin{small}
+		\begin{verbatim}
+			:def c3 = :ctf 
+			[C#Cipher \in ciphers(nw(S#Sys)) .]
+			:def c4 = :ctf {eq P@Prin  = enemy .}
+			:def c5 = :ctf {eq P#Prin  = P1@Prin .}
+			:def c6 = :ctf {eq P0#Prin  = P0@Prin .}
+			:def c7 = :ctf {eq k(C#Cipher) = K@Key .}
+			:def c8 = :ctf {eq r(C#Cipher) = R@Rand .}
+			:def c9 = :ctf {eq p(C#Cipher) = P1@Prin .}
+			:def c10 = :ctf {eq K@Key  = k(enemy) .}
+			:apply(c3) :apply(c4) :apply(c5) :apply(c6) 
+			:apply(c7) :apply(c8) :apply(c9) :apply(c10)
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	Case splittings are carried out based on one Boolean term and seven equations. 
+	The first sub-goal in which the Boolean term is true and seven equations hold can be discharged:
+	\begin{small}
+		\begin{verbatim}
+			:imp [iff1] by {K:Key <- K@Key ; 
+				P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
+				P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+			:apply (rd)
+		\end{verbatim}
+	\end{small}
+	
+	However, with the sub-goals in which the Boolean term is true, first six equations hold and the last equation does not hold, we need to conduct case splitting more as well as use \verb!inv2! as a lemma:
+	
+	\begin{small}
+		\begin{verbatim}
+			:def c11 = :ctf {eq P1@Prin  = enemy .}
+			:def c12 = :ctf [enc(K@Key,R@Rand,enemy) 
+			  \in ciphers(nw(S#Sys)) .]
+			:apply(c11) :apply(c12)
+			:imp [iff] by {K:Key <- K@Key ; 
+				R:Rand <- R@Rand ;}
+			:imp [iff1] by {K:Key <- K@Key ; 
+				P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; 
+				P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+			:apply (rd)
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	The lemma \verb!inv2! is instantiated by replacing the variables
+	\verb!K:Key! and \verb!R:Rand! with the fresh constants \verb!K@Key!
+	and \verb!R@Rand!, and the instance is used as the premise of the
+	implication. The induction hypothesis is instantiated by
+	replacing the variables with the
+	fresh constants, and the instance is
+	used as the premise of the implication. 
+	Then, \verb!:apply(rd)! is
+	used to discharge the current goal.
+	The remaining sub-goals of 2 can be discharged directly without using any lemma.
+	The remaining goals from 3 to 6 can be discharged likewise.
+	
+	\subsection{Formal Verification with CiMPG}
+	The following is the proof score for the case corresponding to goal 1-1-1 in the last section:
+	\begin{small}
+		\begin{verbatim}
+			open IFF .
+			op s : -> Sys .  ops a b c d e : -> Prin .
+			op k : -> Key .  ops r1 r2 : -> Rand .
+			eq (r2 \in rands(nw(s))) = true .
+			red inv1(s,a,b,c,k,r1) 
+			implies inv1(fkcm1(s,d,e,r2),a,b,c,k,r1) .
+			close
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!open! makes the module \verb!IFF! available, \verb!close! stops the use of the module and \verb!red! reduces (computes) the given term. 
+	\verb!s! and \verb!k! correspond to \verb!S#Sys! and \verb!K@Key! in the last section, respectively.
+	\verb!a!, \verb!b!, \verb!c!, \verb!d!, and \verb!e! correspond to \verb!P@Prin!, \verb!P1@Prin!, \verb!P0@Prin!, \verb!P#Prin!, and \verb!P0#Prin!, respectively.
+	\verb!r1! and \verb!r2! correspond to \verb!R@Rand! and \verb!R#Rand!, respectively.
+	%The detail of the proof score approach to formal verification can be found in the
+	The details of the proof score approach as well as how to write proof scores to conduct formal verification can be found in papers ~\cite{OgataF03fmoods}.
+	%Papers~\cite{OgataF03fmoods} has presented the proof score approach as well as the details descriptions how to write proof scores to conduct formal verification.
+	In comparison with proof scripts, proof scores are often easier to understand for human users, and writing proof scores are also more flexible than writing proof scripts.
+	That is the reason why when conducting formal verification, we prefer to write proof scores rather than proof scripts.
+	However, because of the flexibility, proof scores are subject to human errors.
+	For example, during the verification users may overlook some cases, leading to the flaw verification.
+	
+	
+	After writing proof scores that IFF protocol enjoys the property, we can confirm that the proof scores are correct by doing the formal verification with CiMPA as described in the last
+	section. Although we are able to conduct the formal verification with
+	CiMPA once we have completed formal verification by writing proof
+	scores in CafeOBJ, it would be preferable to automatically confirm the
+	correctness of proof scores. CiMPG makes it possible to automatically
+	confirm the correctness of proof scores by generating proof scripts
+	for CiMPA from the proof scores.
+	
+	To use CiMPG, we need to add one more open-close fragment to the proof
+	scores, which is as follows:
+	
+	\smallskip
+	\begin{small}
+		\noindent
+		\verb!open IFF .!\\
+		\verb!  :proof(iff)!\\
+		\verb!close!
+		\smallskip
+	\end{small}
+	
+	
+	\noindent
+	where \verb!iff! is just an identifier, can be replaced by another one that is more preferred.
+	
+	Moreover, we need to write \verb!:id(iff)! in each open-close
+	fragment. For example, the above open-close fragment becomes as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			open IFF .
+			:proof(iff)
+			op s : -> Sys . ops a b c d e : -> Prin .
+			op k : -> Key .   ops r1 r2 : -> Rand .
+			eq (r2 \in rands(nw(s))) = true .
+			red inv1(s,a,b,c,k,r1) 
+			implies inv1(fkcm1(s,d,e,r2),a,b,c,k,r1) .
+			close
+		\end{verbatim}
+	\end{small}
+	
+	Feeding the annotated proof scores into CiMPG, CiMPG generates the
+	proof script for CiMPA. The generated proof script is quite similar to
+	the one written manually. Feeding the generated proof script into
+	CiMPA, CiMPA discharges all goals, confirming that the proof scores
+	are correct. 
+	%It took about 626s to generate the proof script with CiMPG.
+	
+	
+	\section{Formal verification of NSLPK}
+	\label{sect_nslpk}
+	NSLPK \cite{nslpk95} is a modification of NSPK authentication protocol \cite{nspk78} made by Lowe. 
+	The NSLPK protocol can be described as the following three message exchanges:
+	
+	${\rm Init} \ \ \ p \rightarrow q : \varepsilon_q(n_p, p)$
+	
+	${\rm Resp} \ \, q \rightarrow p : \varepsilon_p(n_p, n_q,q)$
+	
+	${\rm Ack} \ \ \: p \rightarrow q : \varepsilon_q(n_q)$
+	
+	\noindent
+	Each principal such as $p$ and $q$ has a pair of keys: public and private keys. $\varepsilon_p(m)$ denotes the ciphertext obtained by encrypting the message $m$ with the principal $p$'s public key. $n_p$ is a nonce (a random number) generated by principal $p$. 
+	A nonce is a unique and non-guessable number that is used only one time.
+	Again, we also suppose that the cryptosystem used is perfect.
+	
+	\subsection{Formal Specification of the Protocol}
+	We introduce following three operators to represent the ciphertexts used in the protocol:
+	
+	%We first declare the operator \verb!enc! to specify the ciphertexts used in the protocol as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			op enc1 : Prin Nonce Prin -> Cipher1
+			op enc2 : Prin Nonce Nonce Prin -> Cipher2
+			op enc3 : Prin Nonce -> Cipher3
+		\end{verbatim}
+	\end{small}
+	%
+	%op key : Cipher1 -> Principal
+	%op nonce : Cipher1 -> Nonce
+	%op principal : Cipher1 -> Principal
+	%
+	%op key : Cipher2 -> Principal
+	%op nonce1 : Cipher2 -> Nonce
+	%op nonce2 : Cipher2 -> Nonce
+	%op principal : Cipher2 -> Principal
+	%
+	%op key : Cipher3 -> Principal
+	%op nonce : Cipher3 -> Nonce
+	
+	\noindent
+	%where \verb!Nonce! is the sort representing symmetric keys,
+	% given an agent p, k(p) denotes the key of the p’s group; operator p returns the argument of k(p),
+	where 
+	\verb!Nonce! is the sort denoting the nonce numbers; 
+	%\verb!Prin! is the sort representing principals;
+	\verb!Cipher1!, \verb!Cipher2!, and \verb!Cipher3! are the sorts denoting three kinds of ciphertexts contained in Init, Resp, and Ack messages, respectively.
+	Given principals $p$, $q$ and a nonce $n_p$ term \verb!enc1(!$q,n_p,p$\verb!)!
+	denotes the ciphertext $\varepsilon_q(n_p, p)$ obtained by encrypting $n_p$ and $p$ with principal $q$'s public key.
+	\verb!enc2! and \verb!enc3! can be understood likewise.
+	%Given a key $k$, a random number $r$ and an agent $p$, 
+	%\verb!enc!$(k,r,p)$ denotes the ciphertext obtained by encrypting $r$ and $p$ with $k$.
+	%Operators \verb!k!, \verb!r! and \verb!p! return the first, second and third arguments of \verb!enc!$(k, r, p)$, respectively.
+	
+	
+	We specifiy three messages used in NSLPK as follows:
+	\begin{small}
+		\begin{verbatim}
+			op m1 : Prin Prin Prin Cipher1 -> Msg
+			op m2 : Prin Prin Prin Cipher2 -> Msg
+			op m3 : Prin Prin Prin Cipher3 -> Msg
+		\end{verbatim}
+	\end{small}
+	
+	%constant enemy denotes the enemy,
+	\noindent
+	\verb!Msg! as well as three arguments of each operator can be understood as in the specification of IFF explained in the last section.
+	%The first, second and third arguments of each of \verb!cm! and \verb!rm! are the actual creator, the seeming sender and the receiver of the corresponding message. The first argument is meta-information that is only available to the outside observer and the agent that has sent the corresponding message, and that cannot be forged by the enemy; while the remaining arguments may be forged by the enemy. 
+	%
+	%The network is modeled as a multiset of messages, in which the intruder can use as his/her storage. Any message that has been sent or put once into the network is supposed to be never deleted from the network because the intruder can replay the message repeatedly, although the intruder cannot forge the first argument. Consequently, the empty network (i.e., the empty multiset) means that no messages have been sent.
+	
+	The intruder tries to glean four kinds of values from the network, which are nonces and three kinds of ciphertexts. Then, we use following four operators to denote those values:
+	
+	\begin{small}
+		\begin{verbatim}
+			op cnonce : Network -> ColNonce
+			op cenc1 : Network -> ColCipher1
+			op cenc2 : Network -> ColCipher2
+			op cenc3 : Network -> ColCipher3
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!Network! is the sort denoting networks (i.e., multisets of messages) and \verb!Col!$X$ is a sort denoting collections of values corresponding to the sort $X$. 
+	The equations defining \verb!cenc1! are as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			eq E1 \in cenc1(void) = false .
+			ceq E1 \in cenc1(M,NW) = true if m1?(M) and 
+			not(key(cipher1(M)) = intruder) and 
+			E1 = cipher1(M) .
+			ceq E1 \in cenc1(M,NW) = E1 \in cenc1(NW)
+			if not(m1?(M) and E1 = cipher1(M)) 
+			and not(key(cipher1(M)) = intruder) .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!E1! is a CafeOBJ variable of \verb!Cipher1!.
+	\verb!m1?! checks if a given message is an Init message.
+	Operator \verb!cipher1! takes an Init message as an argument and returns its ciphertext (i.e., the fourth argument of \verb!m1! operator).
+	Operator \verb!key! takes a ciphertext as an argument and returns the principal in which the ciphertext is encrypted with its public key. 
+	\verb!void!, \verb!M!, \verb!NW!, as well as \verb!(M,NW)! can be understood as explained in the last section.
+	The equations say that a ciphertext \verb!E1! is available to the enemy iff there exists an Init message whose content is \verb!E1! and \verb!E1! is not encrypted by the intruder's public key. 
+	Let us note that, if \verb!E1! is encrypted by the intruder's public key, \verb!E1! can be rebuilt by the intruder.
+	%The equations say that 
+	\verb!cnonce!, \verb!cenc2!, and \verb!cenc3! can be defined likewise.
+	
+	%We use sort \verb!Sys! to denote the state space of the protocol.
+	We use two observers, nine transitions, together with one constant that represents an arbitrary initial state to specify NSLPK as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			op ur : Sys -> URand . op nw : Sys -> Network
+			op init : -> Sys {constr}
+			op sdm1 : Sys Prin Prin Rand -> Sys {constr}
+			op sdm2 : Sys Prin Rand Msg -> Sys {constr}
+			op sdm3 : Sys Prin Rand Msg Msg  -> Sys 
+			{constr}
+			op fkm11 : Sys Prin Prin Cipher1 -> Sys 
+			{constr}
+			op fkm12 : Sys Prin Prin Nonce -> Sys {constr}
+			op fkm21 : Sys Prin Prin Cipher2 -> Sys 
+			{constr}
+			op fkm22 : Sys Prin Prin Nonce Nonce -> Sys 
+			{constr}
+			op fkm31 : Sys Prin Prin Cipher3 -> Sys 
+			{constr}
+			op fkm32 : Sys Prin Prin Nonce -> Sys {constr}
+		\end{verbatim}
+	\end{small}
+	
+	
+	\noindent
+	where \verb!URand! is the sort denoting sets of random numbers.
+	\verb!ur!, \verb!nw!, and \verb!init! can be understood as in the last section.
+	The first three transitions formalize sending messages exactly following the protocol, while the remaining formalize the intruder's faking messages, which can be understood as follows:
+	
+	\begin{itemize}
+		\item \verb!fkm11!, \verb!fkm21!, and \verb!fkm31!: a ciphertext \verb!C! is available to the intruder, the intruder fakes and sends a/an Init, or Resp, or Ack message using \verb!C!, respectively.
+		\item \verb!fkm12! and \verb!fkm32!: a nonce \verb!N! is available to the intruder, the intruder fakes and sends an Init or Ack message using \verb!N!, respectively, 
+		\item \verb!fkm22!: two nonces \verb!N1! and \verb!N2! are available to the intruder, the intruder fakes and sends a Resp message using \verb!N1! and \verb!N2!.
+	\end{itemize}
+	
+	
+	%\verb!sdcm! is defined as follows:
+	%\begin{small}
+	%	\begin{verbatim}
+	%		ceq nw(sdcm(F,P1,P2,R)) = (cm(P1,P1,P2,R) ,
+	%		nw(F)) if c-sdcm(F,P1,P2,R) .
+	%		ceq ur(sdcm(F,P1,P2,R)) = (R ur(F))
+	%		if c-sdcm(F,P1,P2,R) .
+	%		ceq sdcm(F,P1,P2,R) = F 
+	%		if not c-sdcm(F,P1,P2,R) .
+	%	\end{verbatim}
+	%\end{small}
+	%
+	%\noindent
+	%where \verb!c-sdcm(F,P1,P2,R)! is \verb!not(R \in ur(F))!.
+	%The equations say that if \verb!c-sdcm(F,P1,P2,R)! is true, then the Check message \verb!cm(P1,P1,P2,R)! is put into the network \verb!nw(F)!, the random number \verb!R! used by the sender is put into \verb!ur(F)! in the state denoted by \verb!sdcm(F,P1,P2,R)!; if \verb!sdcm(F,P1,P2,R)! is false, nothing changes. 
+	
+	Let \verb!S! be a CafeOBJ variable of \verb!Sys!, and \verb!P! \& \verb!Q! are CafeOBJ variables of \verb!Prin!.
+	\verb!fkm11! is defined as follows:
+	\begin{small}
+		\begin{verbatim}
+			eq  ur(fkm11(S,P,Q,E1)) = ur(S) .
+			ceq nw(fkm11(S,P,Q,E1)) = m1(intruder,P,Q,E1)
+			, nw(S) if c-fkm11(S,P,Q,E1) .
+			ceq fkm11(S,P,Q,E1) = S 
+			if not c-fkm11(S,P,Q,E1) .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!c-fkm11(S,P,Q,E1)! is \verb!E1 \in! \verb!cenc1(nw(S))!, 
+	\verb!intruder! is a constant of \verb!Prin! denoting the intruder. The equations say that if \verb!c-fkm11(S,P,Q,E1)! is true, then the Init message \verb!m1(intruder,P,Q,E1)! is put into the network \verb!nw(S)!, \verb!ur(S)! does not change in the state denoted by \verb!fkm11(S,P,Q,E1)!; if \verb!c-fkm11(S,P,Q,E1)! is false, nothing changes. The remaining transitions can be defined likewise.
+	
+	
+	
+	\subsection{Formal Verification with CiMPA and CiMPG}
+	There are two properties of NSLPK that we would like to verify namely nonce secrecy property and one-to-many correspondence property.
+	The former says that all nonces available to the intruder are those created by the intruder or those created for the intruder. Let \verb!N! be a CafeOBJ variable of \verb!Nonce!, respectively, we specify the nonce secrecy property as follows:
+	
+	\begin{small}
+		\begin{verbatim}
+			eq inv130(S,N) = (N \in cnonce(nw(S)) 
+			implies (creator(N) = intruder or 
+			forwhom(N) = intruder)) .
+		\end{verbatim}
+	\end{small}
+	
+	The one-to-many correspondence property is specified by the following two equations:
+	\begin{small}
+		\begin{verbatim}
+			eq inv170(S,P,Q,Q1,R,N) = (not(P = intruder)
+			and m1(P,P,Q,enc1(Q,n(P,Q,R),P)) \in nw(S) 
+			and m2(Q1,Q,P,enc2(P,n(P,Q,R),N,Q)) \in nw(S)
+			implies 
+			m2(Q,Q,P,enc2(P,n(P,Q,R),N,Q)) \in nw(S)) .
+			eq inv180(S,P,Q,P1,R,N) = (not(Q = intruder)
+			and m2(Q,Q,P,enc2(P,N,n(Q,P,R),Q)) \in nw(S)
+			and m3(P1,P,Q,enc3(Q,n(Q,P,R))) \in nw(S)
+			implies
+			m3(P,P,Q,enc3(Q,n(Q,P,R))) \in nw(S)) .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!P1! \& \verb!Q1! are CafeOBJ variables of \verb!Prin!, \verb!R! is a CafeOBJ variable of \verb!Rand!.
+	\verb!inv170! says that whenever \verb!P! successfully sent an $\rm Init$ message to \verb!Q!, and
+	received a corresponding $\rm Resp$ seemingly from \verb!Q!,
+	%\verb!Q! successfully sent back to \verb!P! an $\rm Resp$ message,
+	the principal that \verb!P! is communicating with is really \verb!Q! even though there are malicious principals (e.g., \verb!Q1!).
+	\verb!inv180! can be understood likewise.
+	%The equations say that 
+	%Whenever a protocol run is successfully
+	%completed by p and q,
+	%the principal with which p is communicating is really q,
+	%and
+	%the principal with which q is communicating is really p
+	%even if there are malicious principals. 
+	
+	To verify the nonce secrecy property, we prove that \verb!inv130! is an invariant of the OTS formalizing NSLPK. 
+	The formal verification is also conducted in two ways: by writting proof scripts with CiMPA and by using CiMPG to generate proof scripts from proof scores.
+	Both of them require the use of the following lemmas:
+	
+	\begin{small}
+		\begin{verbatim}
+			eq inv100(S,E1) = (E1 \in cenc1(nw(S)) 
+			implies not(key(E1) = intruder)) .
+			eq inv110(S,E2) = (E2 \in cenc2(nw(S)) 
+			implies not(key(E2) = intruder)) .
+			eq inv120(S,E3) = (E3 \in cenc3(nw(S)) 
+			implies not(key(E3) = intruder)) .
+			eq inv140(S,E1) = (E1 \in cenc1(nw(S)) and 
+			principal(E1) = intruder 
+			implies nonce(E1) \in cnonce(nw(S))) .
+			eq inv150(S,E2) = (E2 \in cenc2(nw(S)) and 
+			principal(E2) = intruder
+			implies nonce2(E2) \in cnonce(nw(S))) .
+			eq inv160(S,N) = (creator(N) = intruder 
+			implies N \in cnonce(nw(S))) .
+		\end{verbatim}
+	\end{small}
+	
+	\noindent
+	where \verb!E2! and \verb!E3! are CafeOBJ variables of \verb!Cipher2! and \verb!Cipher3!, respectively.
+	
+	In each way of verification, what we need to do is quite similar to what we have described in the last section with formal verification of IFF. 
+	However, with CiMPG, we also need to make some modifications to the existing proof scores. 
+	Let us consider an example in which we want to split the current case into two sub-cases: (1) message \verb!m! is in \verb!nw(s)!, which is the network of the current state, and (2) \verb!m! is not in \verb!nw(s)!.
+	CafeOBJ allows us to write proof scores to conduct case splitting by introducing two equations: (i) \verb!nw(s) = (m , nw')! to characterize (1) and (ii) \verb!m \in nw(s) = false! to characterize (2), where \verb!nw'! is a constant denoting an arbitrary network (or list of messages).
+	%But CiMPA does not accept this kind of case splitting. 
+	With CiMPA, if we declare equation (i) and apply for case splitting, then it will automatically split the current goal into two sub-goals in which (i) holds in the first sub-goal, while it does not hold in the second one. Thus, the second sub-goal is characterized by the equation \verb!(nw(s) = (m , nw')) = false!. 
+	In this sub-goal, it does not guarantee that \verb!m! is not in \verb!nw(s)! since \verb!m! can be in \verb!nw'!.
+	CiMPG also can not recognize that the use of two equations (i) and (ii) for case splitting is correct.
+	In the existing proof scores of formal verification of NSLPK, there are many times in which case splitting is ``flexibly'' applied in the same way as based on two equations (i) and (ii) mentioned above.
+	This flexible case splitting is an advantage of the CafeOBJ/proof score method but also is a disadvantage because we need to ensure that the equations used for case splitting cover every case and do not overlap each other.
+	However, to make it possible for CiMPG to generate the proof scripts, the existing proof score needs to be modified.
+	With the example mentioned above, two equations used for case splitting should be \verb!m \in nw(s) = true! and \verb!m \in nw(s) = false!.
+	%That is the reason why we need to make some modifications on the existing proof scores.
+	%We need to make
+	
+	%We do not describe the details again. The full proof scripts, proof scores of the formal verification can be found at \url{http://...}.
+	
+	%\subsection{Formal Verification with CiMPG}
+	%This section describes the formal verification of NSLPK with CiMPG. 
+	
+	
+	%\section{Related Work}
+	%\label{sect_rw}
+	%The third and fourth authors of the present paper have made an abstract version of Anderson mutual exclusion protocol, namely A-Anderson protocol, and formally verified that A-Anderson enjoys the mutual exclusion property~\cite{duongtd20}. The verification is conducted in three ways: by writing proof scores, with CiMPA, and with CiMPG. 
+	%The reason why did not conduct formal verification with the original version Anderson is that the protocol uses a finite Boolean array and the modulo (or remainder) operation of natural numbers, causing the challenge to conduct formal verification in a sense of theorem proving.
+	%The paper has also mentioned how to formally verify that Anderson enjoys the mutual exclusion property by showing that there exists a simulation relation from Anderson to A-Anderson, and such simulation preserves the property. The details of this verification technique, however, were not presented in~\cite{duongtd20} due to the page-limitation.
+	%They mentioned that they would report that part in a longer version.
+	%
+	%Futatsugi and Ogata~\cite{futatsugi05} have demonstrated the proof score approach to formal verification designs of software.
+	%IFF protocol was used as an example to illustrate the method.
+	%They have formally verified that if principal $p$ receives a valid $\rm Reply$ message from principal $q$, $q$ is always a member of the $p$'s group.
+	%
+	%Riesco and Ogata~\cite{adrian20} have presented CiMPG+F, which is an extension of the CafeInMaude.
+	%% interpreter that, for a large class of CafeOBJ specifications, 
+	%Giving a CafeOBJ specification, CiMPG+F provides two main features: generating complete proofs from scratch and fixing incomplete proof scores. 
+	%In the former, users are required to introduce the properties to be proven and the induction variable, then CiMPG+F tries to infer proof scripts that prove the given properties.
+	%In the latter, either when proof scripts can not be generated from scratch or when users want to generate proof scripts from incomplete proof scores, CiMPG+F tries to fix them by using the given information to prune the search space, or users can provide a (partial) proof score guiding the process. 
+	%Thus, CiMPG+F is in charge of the mechanical work and leaves users the creative tasks.
+	%The performance of the tool has been tested with some protocols.
+	%With complicated case studies, the tool takes time to generate the proof scripts.
+	%
+	%%Nakano et al.~\cite{nakano07} have proposed a method that can automatically verify that OTSs specified in Maude enjoy invariant properties. The proposed method is based on fixed-point computation, which is one of the standard techniques for automatic (invariant) verification. 
+	%%Based on the proposed method, a tool named Crème has been developed. 
+	%%Two case studies have been presented with NSLPK and NSPK protocols.
+	%%Crème has automatically verified that NSLPK protocol enjoys a desired property, while it found a counterexample showing that NSPK does not satisfy the property.
+	
+	\section{Conclusion}
+	\label{sect_concl}
+	This paper has presented the formal verifications with proof assistant CiMPA and with proof generator CiMPG. 
+	In comparison with the proof score approach, each verification method has advantages as well as disadvantages. 
+	While proof scores are flexible to write, they are subject to human errors since human users can overlook some cases during the verification. 
+	The proof scripts are reliable, but they are not easy to develop, especially with non-expert users. 
+	CiMPG combines the flexibility of the proof score approach and the reliability of CiMPA. However, it often takes time for CiMPG to generate proof scripts when the size of input proof scores is big. 
+	Two case studies are presented in which we formally verify that IFF protocol enjoys the identifiable property, and NSLPK enjoys the nonce secrecy and one-to-many correspondence properties.
+	%In the future, we aim to develop a tool that can automatically generate proof scores for formal systems specifications and formal property specifications provided auxiliary lemmas.
+	
+	% An example of a floating figure using the graphicx package.
+	% Note that \label must occur AFTER (or within) \caption.
+	% For figures, \caption should occur after the \includegraphics.
+	% Note that IEEEtran v1.7 and later has special internal code that
+	% is designed to preserve the operation of \label within \caption
+	% even when the captionsoff option is in effect. However, because
+	% of issues like this, it may be the safest practice to put all your
+	% \label just after \caption rather than within \caption{}.
+	%
+	% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+	% option should be used if it is desired that the figures are to be
+	% displayed while in draft mode.
+	%
+	%\begin{figure}[!t]
+	%\centering
+	%\includegraphics[width=2.5in]{myfigure}
+	% where an .eps filename suffix will be assumed under latex, 
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	%\caption{Simulation Results}
+	%\label{fig_sim}
+	%\end{figure}
+	
+	% Note that IEEE typically puts floats only at the top, even when this
+	% results in a large percentage of a column being occupied by floats.
+	
+	
+	% An example of a double column floating figure using two subfigures.
+	% (The subfig.sty package must be loaded for this to work.)
+	% The subfigure \label commands are set within each subfloat command, the
+	% \label for the overall figure must come after \caption.
+	% \hfil must be used as a separator to get equal spacing.
+	% The subfigure.sty package works much the same way, except \subfigure is
+	% used instead of \subfloat.
+	%
+	%\begin{figure*}[!t]
+	%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+	%\label{fig_first_case}}
+	%\hfil
+	%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+	%\label{fig_second_case}}}
+	%\caption{Simulation results}
+	%\label{fig_sim}
+	%\end{figure*}
+	%
+	% Note that often IEEE papers with subfigures do not employ subfigure
+	% captions (using the optional argument to \subfloat), but instead will
+	% reference/describe all of them (a), (b), etc., within the main caption.
+	
+	
+	% An example of a floating table. Note that, for IEEE style tables, the 
+	% \caption command should come BEFORE the table. Table text will default to
+	% \footnotesize as IEEE normally uses this smaller font for tables.
+	% The \label must come after \caption as always.
+	%
+	%\begin{table}[!t]
+	%% increase table row spacing, adjust to taste
+	%\renewcommand{\arraystretch}{1.3}
+	% if using array.sty, it might be a good idea to tweak the value of
+	% \extrarowheight as needed to properly center the text within the cells
+	%\caption{An Example of a Table}
+	%\label{table_example}
+	%\centering
+	%% Some packages, such as MDW tools, offer better commands for making tables
+	%% than the plain LaTeX2e tabular which is used here.
+	%\begin{tabular}{|c||c|}
+	%\hline
+	%One & Two\\
+	%\hline
+	%Three & Four\\
+	%\hline
+	%\end{tabular}
+	%\end{table}
+	
+	
+	% Note that IEEE does not put floats in the very first column - or typically
+	% anywhere on the first page for that matter. Also, in-text middle ("here")
+	% positioning is not used. Most IEEE journals/conferences use top floats
+	% exclusively. Note that, LaTeX2e, unlike IEEE journals/conferences, places
+	% footnotes above bottom floats. This can be corrected via the \fnbelowfloat
+	% command of the stfloats package.
+	
+	
+	% conference papers do not normally have an appendix
+	
+	
+	% use section* for acknowledgement
+	% \section*{Acknowledgment}
+	
+	% The authors would like to thank...
+	% more thanks here
+	
+	
+	% trigger a \newpage just before the given reference
+	% number - used to balance the columns on the last page
+	% adjust value as needed - may need to be readjusted if
+	% the document is modified later
+	% \IEEEtriggeratref{8}
+	% The "triggered" command can be changed if desired:
+	% \IEEEtriggercmd{\enlargethispage{-5in}}
+	
+	% references section
+	
+	% can use a bibliography generated by BibTeX as a .bbl file
+	% BibTeX documentation can be easily obtained at:
+	% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+	% The IEEEtran BibTeX style support page is at:
+	% http://www.michaelshell.org/tex/ieeetran/bibtex/
+	\bibliographystyle{IEEEtran} \bibliography{seke21_nslpk}
+	%\bibliographystyle{IEEEtran} \bibliography{IEEEabrv,paper}
+	% argument is your BibTeX string definitions and bibliography database(s)
+	%\bibliography{IEEEabrv,../bib/paper}
+	%
+	% <OR> manually copy in the resultant .bbl file
+	% set second argument of \begin to the number of references
+	% (used to reserve space for the reference number labels box)
+	
+	% \begin{thebibliography}{1}
+	% 
+	% \bibitem{IEEEhowto:kopka}
+	% H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+	%   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+	% 
+	% \end{thebibliography}
+	
+	% that's all folks
 \end{document}
